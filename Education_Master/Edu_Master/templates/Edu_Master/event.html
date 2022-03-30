@@ -1,0 +1,58 @@
+{% extends 'Edu_Master/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Home {% endblock %}
+{% block body %}
+{% load static %}
+
+<!--SECTION EVENT START-->
+<section>
+    <div class="container com-sp">
+        <div class="row">
+            <div class="cor about-sp">
+                <div class="ed-about-tit">
+                    <div class="con-title">
+                        <h2>College <span> Events</span></h2>                        
+                    </div>
+                    <div>
+                        {% for item in context %}
+                        <div class="ho-event pg-eve-main">
+                            <ul>
+                                <li>
+                                    <div class="ho-ev-date pg-eve-date"><span>{{item.Event_Date | date:'d'}}</span><span>{{item.Event_Date | date:'M,Y'}}</span>
+                                    </div>
+                                    <div class="ho-ev-link pg-eve-desc">
+                                        <a href="{% url 'event_register' item.pk %}">
+                                            <h4>{{item.Event_Name}}</h4>
+                                        </a>
+                                        <p>{{item.Event_Topic}}</p>
+                                        <span>{{item.Event_Time}} – {{item.Event_End_Time}}</span>
+                                    </div>
+                                    <div class="pg-eve-reg">
+                                        <a href="{% url 'event_register' item.pk %}">Register</a><a href="{% url 'event_details' item.pk %}">Read more</a>
+                                    </div>
+                                </li>                                
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="pg-pagina">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#!"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!">4</a></li>
+                            <li class="waves-effect"><a href="#!">5</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION EVENT END-->
+
+{% endblock %}

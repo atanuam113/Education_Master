@@ -1,0 +1,120 @@
+{% extends 'Edu_Master/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Student profile Edit{% endblock %}
+{% block body %}
+{% load static %}
+
+<!--SECTION START-->
+{% for item,form in AllContext %}
+<section>
+    <div class="pro-cover">
+    </div>
+    <div class="pro-menu">
+        <div class="container">
+            <div class="col-md-9 col-md-offset-3">
+                <ul>
+                    <li><a href="{% url 'student_dashboard' %}" class="pro-act">My Dashboard</a></li>
+                    <li><a href="{% url 'student_profile' %}">Profile</a></li>
+                    <li><a href="{% url 'student_course' %}">Courses</a></li>
+                    <li><a href="{% url 'student_exam' %}">Exams</a></li>
+                    <li><a href="{% url 'student_class_time' %}">Time Line</a></li>
+                    <li><a href="#">Notifications</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="stu-db">
+        <div class="container pg-inn">
+            <div class="col-md-3">
+                <div class="pro-user">
+                    <img src="{{item.Student_Profile_Pic.url}}" alt="user">
+                </div>
+                <div class="pro-user-bio">
+                    <ul>
+                        <li>
+                            <h4>{{item.Student_Name}}</h4>
+                        </li>
+                        <li>Student Id: {{item.Student_ID}}</li>
+                        <li><a href="{{item.Student_Github}}"><i class="fa fa-github"></i> Github:
+                                {{item.Student_Github}}</a></li>
+                        <li><a href="{{item.Student_Linkedin}}"><i class="fa fa-linkedin"></i> linkedin:
+                                {{item.Student_Linkedin}}</a></li>
+                        <li><a href="{{item.Student_Twitter}}"><i class="fa fa-twitter"></i> Twitter:
+                                {{item.Student_Twitter}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="udb">
+
+                    <div class="udb-sec udb-prof">
+                        <h4><img src="{% static 'Edu_Master/images/icon/db1.png' %}" alt="" /> My Profile</h4>
+                        <!-- <p>{{item.Student_Bio}}</p> -->
+                        <div class="sdb-tabl-com sdb-pro-table">
+                            <!-- <table class="responsive-table bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>Student Name</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Student Id</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_ID}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eamil</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_Email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_Phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of birth</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_DOB}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td>:</td>
+                                        <td>{{item.Student_Address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>:</td>
+                                        <td><span class="db-done">{{item.Student_Status}}</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                            <form method="post" action=""  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                                {% endfor %}
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                                type="submit" value="submit" class="waves-button-input"></i>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endfor %}
+<!--SECTION END-->
+
+{% endblock %}

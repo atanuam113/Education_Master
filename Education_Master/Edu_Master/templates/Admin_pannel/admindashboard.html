@@ -1,0 +1,955 @@
+{% extends 'Admin_pannel/base.html' %}
+{% load static %}
+{% block admin_link%}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+{% endblock %}
+<!-- Page Title -->
+{% block title%} Admin home {% endblock %}
+{% block body %}
+{% load static %}
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href="#"> Dashboard</a>
+            </li>
+            <li class="page-back"><a href="../"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!--== DASHBOARD INFO ==-->
+    <div class="sb2-2-1">
+        <!-- Alert section start-->
+        <div class="d-flex justify-content-center">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                {% if message.tags == "error"%}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <div>
+                        <strong>warning!</strong>{{ message }}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                        <strong>Success!</strong>{{ message }}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <!-- Alert section end-->
+        <h2>Admin Dashboard</h2>
+
+        <div class="db-2">
+            <ul>
+                <li>
+                    <div class="dash-book dash-b-1">
+                        <h5>All Courses</h5>
+                        <h4>948</h4>
+                        <a href="#">View more</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="dash-book dash-b-2">
+                        <h5>Admission</h5>
+                        <h4>672</h4>
+                        <a href="#">View more</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="dash-book dash-b-3">
+                        <h5>Students</h5>
+                        <h4>689</h4>
+                        <a href="#">View more</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="dash-book dash-b-4">
+                        <h5>Enquiry</h5>
+                        <h4>24</h4>
+                        <a href="#">View more</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Student Details</h4>
+
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Country</th>
+                                        <th>Id</th>
+                                        <th>Date of birth</th>
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/1.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 3214 6522</td>
+                                        <td>chadengle@dummy.com</td>
+                                        <td>united states</td>
+                                        <td>ST17241</td>
+                                        <td>03 Jun 1990</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/2.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>lucas@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST10231</td>
+                                        <td>16 Feb 1987</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/4.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>Ethan@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST32168</td>
+                                        <td>21 Jun 1992</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/5.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>Ethan@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST32168</td>
+                                        <td>21 Jun 1992</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/1.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 3214 6522</td>
+                                        <td>chadengle@dummy.com</td>
+                                        <td>united states</td>
+                                        <td>ST17241</td>
+                                        <td>03 Jun 1990</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/2.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>lucas@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST10231</td>
+                                        <td>16 Feb 1987</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/4.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>Ethan@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST32168</td>
+                                        <td>21 Jun 1992</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/user/5.png' %}" alt=""></span>
+                                        </td>
+                                        <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>+01 8574 6854</td>
+                                        <td>Ethan@gmail.com</td>
+                                        <td>Illinois</td>
+                                        <td>ST32168</td>
+                                        <td>21 Jun 1992</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="#" class="ad-st-view">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Course Details</h4>
+
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Course Name</th>
+                                        <th>Category</th>
+                                        <th>Durations</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Total Seats</th>
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-1.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Aerospace Engineering</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Engineering</td>
+                                        <td>60 Days(420hrs)</td>
+                                        <td>03 Jun 2018</td>
+                                        <td>12 Aug 2018</td>
+                                        <td>74</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-5.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Fashion Technology</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Fashion</td>
+                                        <td>30 Days(420hrs)</td>
+                                        <td>01 Nov 2018</td>
+                                        <td>01 Dec 2018</td>
+                                        <td>30</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-2.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Agriculture Courses</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Agriculture</td>
+                                        <td>25 Days(420hrs)</td>
+                                        <td>05 Jan 2018</td>
+                                        <td>25 Jan 2018</td>
+                                        <td>25</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-3.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Marine Engineering</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Ocean / Marine</td>
+                                        <td>06 Months</td>
+                                        <td>12 Feb 2018</td>
+                                        <td>14 Aug 2018</td>
+                                        <td>68</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-4.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Building, Construction Management</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Construction</td>
+                                        <td>1 Year</td>
+                                        <td>05 Mar 2018</td>
+                                        <td>16 Mar 2018</td>
+                                        <td>72</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-1.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Aerospace Engineering</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Engineering</td>
+                                        <td>60 Days(420hrs)</td>
+                                        <td>03 Jun 2018</td>
+                                        <td>12 Aug 2018</td>
+                                        <td>74</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-5.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Fashion Technology</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Fashion</td>
+                                        <td>30 Days(420hrs)</td>
+                                        <td>01 Nov 2018</td>
+                                        <td>01 Dec 2018</td>
+                                        <td>30</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-2.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Agriculture Courses</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Agriculture</td>
+                                        <td>25 Days(420hrs)</td>
+                                        <td>05 Jan 2018</td>
+                                        <td>25 Jan 2018</td>
+                                        <td>25</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-3.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Marine Engineering</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Ocean / Marine</td>
+                                        <td>06 Months</td>
+                                        <td>12 Feb 2018</td>
+                                        <td>14 Aug 2018</td>
+                                        <td>68</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img
+                                                    src="{% static 'Edu_Master/images/course/sm-4.jpg' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}"><span
+                                                    class="list-enq-name">Building, Construction Management</span><span
+                                                    class="list-enq-city">Illunois, United States</span></a>
+                                        </td>
+                                        <td>Construction</td>
+                                        <td>1 Year</td>
+                                        <td>05 Mar 2018</td>
+                                        <td>16 Mar 2018</td>
+                                        <td>72</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sb2-2-3">
+        <div class="row">
+            <!--== Country Campaigns ==-->
+            <div class="col-md-6">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Job Openings</h4>
+
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Openings</th>
+                                        <th>Date</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Samsing</span>
+                                        </td>
+                                        <td>50</td>
+                                        <td>15 April 2018</td>
+                                        <td>New york, United States</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Microsofts</span>
+                                        </td>
+                                        <td>75</td>
+                                        <td>21 Jun 2018</td>
+                                        <td>New york, United States</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Samsing</span>
+                                        </td>
+                                        <td>50</td>
+                                        <td>15 April 2018</td>
+                                        <td>United States</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Microsofts</span>
+                                        </td>
+                                        <td>75</td>
+                                        <td>21 Jun 2018</td>
+                                        <td>United States</td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--== Country Campaigns ==-->
+            <div class="col-md-6">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Event Details</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>State</th>
+                                        <th>Client</th>
+                                        <th>Changes</th>
+                                        <th>Budget</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">California</span>
+                                        </td>
+                                        <td>Beavis</td>
+                                        <td><span class="txt-success"><i class="fa fa-angle-up"
+                                                    aria-hidden="true"></i><span>2.43%</span></span>
+                                        </td>
+                                        <td>
+                                            <span class="txt-dark weight-500">$1478</span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Florida</span>
+                                        </td>
+                                        <td>Felix</td>
+                                        <td><span class="txt-success"><i class="fa fa-angle-up"
+                                                    aria-hidden="true"></i><span>1.43%</span></span>
+                                        </td>
+                                        <td>
+                                            <span class="txt-dark weight-500">$951</span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-danger">Closed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Hawaii</span>
+                                        </td>
+                                        <td>Cannibus</td>
+                                        <td><span class="txt-danger"><i class="fa fa-angle-up"
+                                                    aria-hidden="true"></i><span>-8.43%</span></span>
+                                        </td>
+                                        <td>
+                                            <span class="txt-dark weight-500">$632</span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-default">Hold</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">Alaska</span>
+                                        </td>
+                                        <td>Neosoft</td>
+                                        <td><span class="txt-success"><i class="fa fa-angle-up"
+                                                    aria-hidden="true"></i><span>7.43%</span></span>
+                                        </td>
+                                        <td>
+                                            <span class="txt-dark weight-500">$325</span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-default">Hold</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="txt-dark weight-500">New Jersey</span>
+                                        </td>
+                                        <td>Hencework</td>
+                                        <td><span class="txt-success"><i class="fa fa-angle-up"
+                                                    aria-hidden="true"></i><span>9.43%</span></span>
+                                        </td>
+                                        <td>
+                                            <span>$258</span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-success">Active</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sb2-2-3">
+        <div class="row">
+            <!--== Listing Enquiry ==-->
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Exam Time Tables</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Degree</th>
+                                        <th>Exam Name</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Timing</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="filled-in" id="filled-in-box-1"
+                                                checked="checked" />
+                                            <label for="filled-in-box-1"></label>
+                                        </td>
+                                        <td>MBA</td>
+                                        <td><span class="list-enq-name">Civil engineering</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>10:00am</td>
+                                        <td>01:00pm</td>
+                                        <td>03:00Hrs</td>
+                                        <td>
+                                            <a href="{% url 'admin_exam_details' %}" class="ad-st-view">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="filled-in" id="filled-in-box-2" />
+                                            <label for="filled-in-box-2"></label>
+                                        </td>
+                                        <td>MBA</td>
+                                        <td><span class="list-enq-name">Google Business</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>10:00am</td>
+                                        <td>01:00pm</td>
+                                        <td>03:00Hrs</td>
+                                        <td>
+                                            <a href="{% url 'admin_exam_details' %}" class="ad-st-view">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="filled-in" id="filled-in-box-3" />
+                                            <label for="filled-in-box-3"></label>
+                                        </td>
+                                        <td>MBA</td>
+                                        <td><span class="list-enq-name">Statistics</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>10:00am</td>
+                                        <td>01:00pm</td>
+                                        <td>03:00Hrs</td>
+                                        <td>
+                                            <a href="{% url 'admin_exam_details' %}" class="ad-st-view">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="filled-in" id="filled-in-box-4" />
+                                            <label for="filled-in-box-4"></label>
+                                        </td>
+                                        <td>MBA</td>
+                                        <td><span class="list-enq-name">Business Management</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>10:00am</td>
+                                        <td>01:00pm</td>
+                                        <td>03:00Hrs</td>
+                                        <td>
+                                            <a href="{% url 'admin_exam_details' %}" class="ad-st-view">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="filled-in" id="filled-in-box-5" />
+                                            <label for="filled-in-box-5"></label>
+                                        </td>
+                                        <td>MBA</td>
+                                        <td><span class="list-enq-name">Art/Design</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>10:00am</td>
+                                        <td>01:00pm</td>
+                                        <td>03:00Hrs</td>
+                                        <td>
+                                            <a href="{% url 'admin_exam_details' %}" class="ad-st-view">View</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--== Latest Activity ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <!--== Latest Activity ==-->
+            <div class="col-md-6">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Latest Activity</h4>
+                    </div>
+                    <div class="tab-inn list-act-hom">
+                        <ul>
+                            <li class="list-act-hom-con">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <h4><span>12 may, 2017</span> Welcome to Academy</h4>
+                            </li>
+                            <li class="list-act-hom-con">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <h4><span>08 Jun, 2017</span> Academy Leadership</h4>
+                            </li>
+                            <li class="list-act-hom-con">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <h4><span>27 July, 2017</span> Awards and Achievement</h4>
+                            </li>
+                            <li class="list-act-hom-con">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <h4><span>14 Aug, 2017</span> Facilities and Management</h4>
+                            </li>
+                            <li class="list-act-hom-con">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <h4><span>24 Sep, 2017</span> Nation award winning 2017</h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--== Social Media ==-->
+            <div class="col-md-6">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Social Media</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Media</th>
+                                        <th>Name</th>
+                                        <th>Share</th>
+                                        <th>Like</th>
+                                        <th>Members</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/1.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">Linked In</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/2.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">Twitter</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/3.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">Facebook</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/4.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">Google Plus</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/5.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">YouTube</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/6.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">WhatsApp</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/7.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">VK</span><span class="list-enq-city">Illunois,
+                                                United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="list-img"><img src="{% static 'Edu_Master/images/sm/2.png' %}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><span class="list-enq-name">Twitter</span><span
+                                                class="list-enq-city">Illunois, United States</span>
+                                        </td>
+                                        <td>15K</td>
+                                        <td>18K</td>
+                                        <td>
+                                            <span class="label label-success">263</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

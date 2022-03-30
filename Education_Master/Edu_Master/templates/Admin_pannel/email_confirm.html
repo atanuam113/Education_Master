@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hello {{name}}!
+Thanks for signing up with Education Master !
+Please verify your Email by clicking on the link below.
+Verification Link: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Thanking you
+Team Education Master
+
+You received this mail because you are registered with Education Master.
+Note: This is a system generated mail,please do not reply.
+To contact support, mail atanu321998@gmail.com
+
+{% endautoescape %}
+

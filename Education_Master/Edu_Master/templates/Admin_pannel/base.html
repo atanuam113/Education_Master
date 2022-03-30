@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title%}  {% endblock %}</title>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Education master is one of the best educational html template, it's suitable for all education websites like university,college,school,online education,tution center,distance education,computer education">
+    <meta name="keyword" content="education html template, university template, college template, school template, online education template, tution center template">
+    <!-- FAV ICON(BROWSER TAB ICON) -->
+    <link rel="shortcut icon" href="{% static 'Edu_Master/images/fav.ico' %}" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" href="{% static 'Edu_Master/css/font-awesome.min.css' %}">
+    <!-- ALL CSS FILES -->
+    <link href="{% static 'Edu_Master/css/materialize.css' %}" rel="stylesheet">
+    <link href="{% static 'Edu_Master/css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'Edu_Master/css/style.css' %}" rel="stylesheet" />
+    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+    <link href="{% static 'Edu_Master/css/style-mob.css' %}" rel="stylesheet" />
+    {% block admin_link%}  {% endblock %}
+</head>
+<body>
+     <!--== MAIN CONTRAINER ==-->
+     <div class="container-fluid sb1">
+        <div class="row">
+            <!--== LOGO ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6 sb1-1">
+                <a href="#" class="btn-close-menu"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a href="#" class="atab-menu"><i class="fa fa-bars tab-menu" aria-hidden="true"></i></a>
+                <a href="index-2.html" class="logo"><img src="{% static 'Edu_Master/images/logo1.png' %}" alt="" />
+                </a>
+            </div>
+            <!--== SEARCH ==-->
+            <div class="col-md-6 col-sm-6 mob-hide">
+                <form class="app-search">
+                    <input type="text" placeholder="Search..." class="form-control">
+                    <a href="#"><i class="fa fa-search"></i></a>
+                </form>
+            </div>
+            <!--== NOTIFICATION ==-->
+            <div class="col-md-2 tab-hide">
+                <div class="top-not-cen">
+                    <a class='waves-effect btn-noti' href="#" title="all enquiry messages"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>5</span></a>
+                    <a class='waves-effect btn-noti' href="#" title="course booking messages"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>5</span></a>
+                    <a class='waves-effect btn-noti' href="#" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>5</span></a>
+                    
+                    <a class='waves-effect btn-noti' href="{% url 'admin_notification' %}"><i class="material-icons" style="font-size:18px">&#xe7f4;</i><span>5</span></a>
+                </div>
+            </div>
+            <!--== MY ACCCOUNT ==-->
+            <div class="col-md-2 col-sm-3 col-xs-6">
+                <!-- Dropdown Trigger -->
+                <a class='waves-effect dropdown-button top-user-pro' href='#' 
+                data-activates='top-menu'><img src="{% static 'Edu_Master/images/user/6.png' %}" alt="" />My Account <i style="font-size:13px" class="fa">&#xf107;</i>
+                </a>
+
+                <!-- Dropdown Structure -->
+                <ul id='top-menu' class='dropdown-content top-menu-sty'>
+                    <li><a href="admin-panel-setting.html" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--== BODY CONTNAINER ==-->
+    <div class="container-fluid sb2">
+        <div class="row">
+            
+            <div class="sb2-1">
+                <!--== USER INFO ==-->
+                <div class="sb2-12">
+                    <ul>
+                        <!-- <li><img src="{% static 'Edu_Master/images/placeholder.jpg' %}" alt=""></li> -->
+                        <li>
+                            <h5>{{ user.username }}<span> {{ user.email }}</span></h5>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+                <!--== LEFT MENU ==-->
+                <div class="sb2-13">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li><a href="{% url 'admin_dashboard1' %}" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        </li>						
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book" aria-hidden="true"></i> All Courses</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_course' %}">All Course</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_course' %}">Add New Course</a>
+                                    </li>
+                                    <!-- <li><a href="{% url 'admin_dashboard1' %}">Trash Course</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-users" aria-hidden="true"></i> Teachers</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_teacher' %}">All Teachers</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_teacher' %}">Add New Teacher</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Students</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_student' %}">All Students</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_student' %}">Add New Student</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                                            						
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_events' %}">All Events</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_event' %}">Create New Events</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-commenting-o" aria-hidden="true"></i> Enquiry</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_enquiry' %}">All Enquiry</a></li>
+									<li><a href="{% url 'admin_course_enquiry' %}">Course Enquiry</a></li>
+									<li><a href="{% url 'admin_admission_enquiry' %}">Admission Enquiry</a></li>
+									<li><a href="{% url 'admin_seminar_enquiry' %}">Seminar Enquiry</a></li>
+									<li><a href="{% url 'admin_event_enquiry' %}">Event Enquiry</a></li>
+									<li><a href="{% url 'admin_common_enquiry' %}">Common Enquiry</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bullhorn" aria-hidden="true"></i> Seminar</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_add_student' %}">All Seminar</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_student' %}">Create New Seminar</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> -->
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil" aria-hidden="true"></i> Exam time table</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_exam' %}">All Exams</a></li>
+                                    <li><a href="{% url 'admin_add_exam' %}">Add New Exam</a></li>
+                                    <li><a href="{% url 'admin_all_groups' %}">All Groups</a></li>
+                                    <li><a href="{% url 'admin_add_group' %}">Create New Groups</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Job Vacants</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="admin-job-all.html">All Jobs</a>
+                                    </li>
+                                    <li><a href="admin-job-add.html">Create New Job</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-cloud-download" aria-hidden="true"></i> Import & Export</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="admin-export-data.html">Export all datas</a>
+                                    </li>
+                                    <li><a href="admin-import-data.html">Import all datas</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% block body %}
+
+            {% endblock %}
+        </div>
+    </div>
+    
+
+    
+    <!--Import jQuery before materialize.js-->
+    <script src="{% static 'Edu_Master/js/main.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/materialize.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/custom.js' %}"></script>
+</body>
+</html>

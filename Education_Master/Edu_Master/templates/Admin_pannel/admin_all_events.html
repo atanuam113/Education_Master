@@ -1,0 +1,76 @@
+{% extends 'Admin_pannel/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Admin all Events {% endblock %}
+{% block body %}
+{% load static %}
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href=""> Events</a>
+            </li>
+            <li class="page-back"><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>All Events</h4>
+                        <p>All about students like name, student id, phone, email, country, city and more</p>
+                    </div>                    
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Start Date</th>
+                                        <th>Start Time</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                {% for item in context %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="list-img"><img src="{{item.Event_Banner.url}}" alt=""></span></td>
+                                        <td>{{item.Event_Name}}</td>
+                                        <td>{{item.Event_Date}}</td>
+                                        <td>{{item.Event_Time}}</td>
+                                        {% if item.Event_Status == "Active"%}
+                                        <td>
+                                            <span class="label label-success">{{item.Event_Status}}</span>
+                                        </td>
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Event_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_event_details' item.pk %}" class="ad-st-view">Edit</a></td>
+                                    </tr>
+                                    
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

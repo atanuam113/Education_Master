@@ -1,0 +1,140 @@
+{% extends 'Edu_Master/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Home {% endblock %}
+{% block body %}
+{% load static %}
+
+{% for item,userprofile in AllContext %}
+<!--SECTION EVENT REGISTER START-->
+<section class="c-all p-semi p-event">
+    <div class="semi-inn">
+        <div class="semi-com semi-left">
+            <div class="all-title quote-title qu-new semi-text eve-reg-text">
+                <h2>{{item.Event_Name}}</h2>
+                <p>{{item.Event_Long_desc}}</p>                
+                <div class="semi-deta eve-deta">
+                    <ul>
+                        <li>DATE:<span>{{item.Event_Date}}</span></li>
+                        <li>Time:<span>{{item.Event_Time}}</span></li>
+                        <li>Topic:<span>{{item.Event_Topic}}</span></li>
+                        <li>End Time:<span>{{item.Event_End_Time}}</span></li>
+                    </ul>
+                </div>
+                <p class="help-line">Join this for free!</p>
+            </div>
+        </div>
+        <div class="semi-com semi-right">
+            <div class="n-form-com semi-form">
+                <div class="col s12">
+                    <table class="responsive-table bordered">
+                        <tbody class="form-horizontal">                            
+                            <tr>                                
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <td>{{userprofile.Student_Name}}</td>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>                                
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <td>{{userprofile.Student_Phone}}</td>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>                                
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <td>{{userprofile.Student_Email}}</td>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>                                
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <td>{{userprofile.Student_Address}}</td>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Student Id</td>
+                                <td>:</td>
+                                <td>{{item.Student_ID}}</td>
+                            </tr>
+                            <tr>
+                                <td>Eamil</td>
+                                <td>:</td>
+                                <td>{{item.Student_Email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>:</td>
+                                <td>{{item.Student_Phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of birth</td>
+                                <td>:</td>
+                                <td>{{item.Student_DOB}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td>{{item.Student_Address}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>:</td>
+                                <td><span class="db-done">{{item.Student_Status}}</span> </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label for="no">{{userprofile.Student_Address}}</label>
+                                <input type="text" class="form-control" placeholder="Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="number" class="form-control" placeholder="Phone number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="email" class="form-control" placeholder="Email id" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="City">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="form-group mar-bot-0">
+                            <div class="col-md-12">
+                                <i class="waves-effect waves-light light-btn waves-input-wrapper"><input type="submit" value="APPLY NOW" class="waves-button-input"></i>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION EVENT REGISTER END-->
+{% endfor %}
+{% endblock %}

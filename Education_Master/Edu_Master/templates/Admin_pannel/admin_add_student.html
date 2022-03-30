@@ -1,0 +1,105 @@
+{% extends 'Admin_pannel/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Admin add user {% endblock %}
+{% block body %}
+{% load static %}
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href=""> Add new student</a>
+            </li>
+            <li class="page-back"><a href="/"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp admin-form">
+                    <div class="inn-title">
+                        <h4>Add New Student Informations</h4>                        
+                    </div>
+                    <div class="tab-inn">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" value="" class="validate" required name="fname" id="fname">
+                                    <label class="">First name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" value="" class="validate" required name="lname" id="lname">
+                                    <label class="">Last name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="text" value="" class="validate" name="uname" id="uname">
+                                    <label class="">User nane</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="number" value="" class="validate" required id="phoneNo" name="phoneNo">
+                                    <label class="">Phone number</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="email" class="validate" value="" required name="email" id="email">
+                                    <label class="">Email is</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="date" value="" class="validate" id="dob" name="dob">
+                                    <label class="">Date of Birth</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" value="" class="validate" name="address" id="address">
+                                    <label class="">Address</label>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input type="password" value="" class="validate" name="password" id="password">
+                                    <label class="">Password</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input type="text" value="" class="validate" name="cpassword" id="cpassword">
+                                    <label class="">Confirm Password</label>
+                                </div>
+                            </div>                           
+                            <div class="row">
+                                <div class="file-field input-field col s12">
+                                    <div class="btn admin-upload-btn">
+                                        <span>File</span>
+                                        <input type="file" id="profile_pic" name="profile_pic">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Profile image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                            type="submit" class="waves-button-input"></i>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

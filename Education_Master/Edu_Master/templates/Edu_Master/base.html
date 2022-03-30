@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title%} {% endblock %}</title>
+    {% load static %}
+    {% block Customlink %} {% endblock %}
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Education master is one of the best educational html template, it's suitable for all education websites like university,college,school,online education,tution center,distance education,computer education">
+    <meta name="keyword"
+        content="education html template, university template, college template, school template, online education template, tution center template">
+    <!-- FAV ICON(BROWSER TAB ICON) -->
+    <link rel="shortcut icon" href="{% static 'Edu_Master/images/fav.ico' %}" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700"
+        rel="stylesheet">
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" href="{% static 'Edu_Master/css/font-awesome.min.css' %}">
+    <!-- ALL CSS FILES -->
+    <link href="{% static 'Edu_Master/css/materialize.css' %}" rel="stylesheet">
+    <link href="{% static 'Edu_Master/css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'Edu_Master/css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'Edu_Master/css/custom.css' %}" rel="stylesheet" />
+    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+    <link href="{% static 'Edu_Master/css/style-mob.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    <!--HEADER SECTION-->
+    <section>
+        <!-- LOGO AND MENU SECTION -->
+        <div class="top-logo" data-spy="affix" data-offset-top="250">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="wed-logo">
+                            <a href=""><img src="{% static 'Edu_Master/images/logo.png' %}" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-menu">
+                            <ul>
+                                <li><a href="{% url 'home' %}">Home</a>
+                                </li>
+                                <li class="about-menu">
+                                    <a href="{% url 'about' %}" class="mm-arr">About us</a>
+                                    <!-- MEGA MENU 1 -->
+                                    <div class="mm-pos">
+                                        <div class="about-mm m-menu">
+                                            <div class="m-menu-inn">
+                                                <div class="mm1-com mm1-s1">
+                                                    <div class="ed-course-in">
+                                                        <a class="course-overlay menu-about" href="{% url 'about' %}">
+                                                            <img src="{% static 'Edu_Master/images/h-about.jpg' %}"
+                                                                alt="">
+                                                            <span>Academics</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="mm1-com mm1-s2">
+                                                    <p>Want to change the world? At Berkeley we’re doing just that. When
+                                                        you join the Golden Bear community, you’re part of an
+                                                        institution that shifts the global conversation every single
+                                                        day.</p>
+                                                    <a href="{% url 'about' %}" class="mm-r-m-btn">Read more</a>
+                                                </div>
+                                                <div class="mm1-com mm1-s3">
+                                                    <ul>
+                                                        <li><a href="{% url 'all_course' %}">All Courses</a></li>
+                                                        <li><a href="{% url 'about' %}">About</a></li>
+                                                        <li><a href="{% url 'all_trainer' %}">Trainer</a></li>
+                                                        <li><a href="{% url 'award' %}">Awards</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- <div class="mm1-com mm1-s4">
+                                                    <ul>
+                                                        <li><a href="dashboard.html">Student profile</a></li>
+                                                        <li><a href="db-courses.html">Dashboard courses</a></li>
+                                                        <li><a href="db-exams.html">Dashboard exams</a></li>
+                                                        <li><a href="db-profile.html">Dashboard profile</a></li>
+                                                        <li><a href="db-time-line.html">Dashboard timeline</a></li>
+                                                    </ul>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="admi-menu">
+                                    <a href="#" class="mm-arr">Admission</a>
+                                    <!-- MEGA MENU 1 -->
+                                    <div class="mm-pos">
+                                        <div class="admi-mm m-menu">
+                                            <div class="m-menu-inn">
+                                                <div class="mm2-com mm1-com mm1-s1">
+                                                    <div class="ed-course-in">
+                                                        <a class="course-overlay" href="{% url 'about' %}">
+                                                            <img src="{% static 'Edu_Master/images/h-about1.jpg' %}"
+                                                                alt="">
+                                                            <span>Academics</span>
+                                                        </a>
+                                                    </div>
+                                                    <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros.
+                                                        Vestibulum congue nec eros quis lacinia. Mauris non tincidunt
+                                                        lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
+                                                    <a href="{% url 'about' %}" class="mm-r-m-btn">Read more</a>
+                                                </div>
+                                                <div class="mm2-com mm1-com mm1-s1">
+                                                    <div class="ed-course-in">
+                                                        <a class="course-overlay" href="{% url 'all_trainer' %}">
+                                                            <img src="{% static 'Edu_Master/images/h-adm1.jpg' %}"
+                                                                alt="">
+                                                            <span>Trainer</span>
+                                                        </a>
+                                                    </div>
+                                                    <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros.
+                                                        Vestibulum congue nec eros quis lacinia. Mauris non tincidunt
+                                                        lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
+                                                    <a href="{% url 'all_trainer' %}" class="mm-r-m-btn">Read more</a>
+                                                </div>
+                                                <div class="mm2-com mm1-com mm1-s1">
+                                                    <div class="ed-course-in">
+                                                        <a class="course-overlay" href="{% url 'award' %}">
+                                                            <img src="{% static 'Edu_Master/images/h-cam1.jpg' %}"
+                                                                alt="">
+                                                            <span>History & awards</span>
+                                                        </a>
+                                                    </div>
+                                                    <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros.
+                                                        Vestibulum congue nec eros quis lacinia. Mauris non tincidunt
+                                                        lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
+                                                    <a href="{% url 'award' %}" class="mm-r-m-btn">Read more</a>
+                                                </div>
+                                                <div class="mm2-com mm1-com mm1-s4">
+                                                    <div class="ed-course-in">
+                                                        <a class="course-overlay" href="{% url 'event' %}">
+                                                            <img src="{% static 'Edu_Master/images/h-res1.jpg' %}"
+                                                                alt="">
+                                                            <span>Event 2018</span>
+                                                        </a>
+                                                    </div>
+                                                    <p>Donec lacus libero, rutrum ac sollicitudin sed, mattis non eros.
+                                                        Vestibulum congue nec eros quis lacinia. Mauris non tincidunt
+                                                        lectus. Nulla mollis, orci vitae accumsan rhoncus.</p>
+                                                    <a href="{% url 'event' %}" class="mm-r-m-btn">Read more</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="{% url 'all_course' %}">All Courses</a></li>
+                                <li class="cour-menu">
+                                    <a href="{% url 'blog' %}" class="mm-arr">Blog</a>
+                                </li>
+                                <li><a href="{% url 'event' %}">Events</a>
+                                </li>
+                                <li><a href="{% url 'student_dashboard' %}">My profile</a>
+                                </li>
+                                <li><a href="{% url 'contact_us' %}">Contact us</a>
+                                </li>
+                                <li>
+                                    <!--== MY ACCCOUNT ==-->
+                                    <!-- <div class="col-md-2 col-sm-3 col-xs-4"> -->
+                                        <!-- Dropdown Trigger -->
+                                        <a class='dropdown-button ' href='#'
+                                            data-activates='top-menu'><img class="userprofile"
+                                                src="{{item.Student_Profile_Pic.url}}" alt="" /> {{ user.username }} <i
+                                                style="font-size:13px" class="fa">&#xf107;</i>
+                                        </a>
+
+                                        <!-- Dropdown Structure -->
+                                        <ul id='top-menu' class='dropdown-content top-menu-sty'>
+                                            <li><a href="admin-panel-setting.html" class="waves-effect"><i
+                                                        class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i
+                                                        class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                                            </li>
+                                        </ul>
+                                    <!-- </div> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="all-drop-down-menu"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                            <form>
+                                <div class="sf-type">
+                                    <div class="sf-input">
+                                        <input type="text" id="sf-box" placeholder="Search course...">
+                                    </div>
+                                    <div class="sf-list">
+                                        <ul>
+                                            <li><a href="">Accounting/Finance</a></li>
+                                            <li><a href="">civil engineering</a></li>
+                                            <li><a href="">Art/Design</a></li>
+                                            <li><a href="">Marine Engineering</a></li>
+                                            <li><a href="">Business Management</a></li>
+                                            <li><a href="">Journalism/Writing</a></li>
+                                            <li><a href="">Physical Education</a></li>
+                                            <li><a href="">Political Science</a></li>
+                                            <li><a href="">Sciences</a></li>
+                                            <li><a href="">Statistics</a></li>
+                                            <li><a href="">Web Design/Development</a></li>
+                                            <li><a href="">SEO</a></li>
+                                            <li><a href="">Google Business</a></li>
+                                            <li><a href="">Graphics Design</a></li>
+                                            <li><a href="">Networking Courses</a></li>
+                                            <li><a href="">Information technology</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="sf-submit">
+                                    <input type="submit" value="Search Course">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <!-- FOOTER -->
+    <section class="wed-hom-footer">
+        <div class="container">
+            <div class="row wed-foot-link">
+                <div class="col-md-4 foot-tc-mar-t-o">
+                    <h4>Top Courses</h4>
+                    <ul>
+                        <li><a href="">Accounting/Finance</a></li>
+                        <li><a href="">civil engineering</a></li>
+                        <li><a href="">Art/Design</a></li>
+                        <li><a href="">Marine Engineering</a></li>
+                        <li><a href="">Business Management</a></li>
+                        <li><a href="">Journalism/Writing</a></li>
+                        <li><a href="">Physical Education</a></li>
+                        <li><a href="">Political Science</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>New Courses</h4>
+                    <ul>
+                        <li><a href="">Sciences</a></li>
+                        <li><a href="">Statistics</a></li>
+                        <li><a href="">Web Design/Development</a></li>
+                        <li><a href="">SEO</a></li>
+                        <li><a href="">Google Business</a></li>
+                        <li><a href="">Graphics Design</a></li>
+                        <li><a href="">Networking Courses</a></li>
+                        <li><a href="">Information technology</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>HELP & SUPPORT</h4>
+                    <ul>
+                        <li><a href="#">24x7 Live help</a>
+                        </li>
+                        <li><a href="{%url 'contact_us' %}">Contact us</a>
+                        </li>
+                        <li><a href="#">Feedback</a>
+                        </li>
+                        <li><a href="#">FAQs</a>
+                        </li>
+                        <li><a href="#">Safety Tips</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row wed-foot-link-1">
+                <div class="col-md-4 foot-tc-mar-t-o">
+                    <h4>Get In Touch</h4>
+                    <p>Address: 28800 Orchard Lake Road, Suite 180 Farmington Hills, U.S.A.</p>
+                    <p>Phone: <a href="#!">+101-1231-4321</a></p>
+                    <p>Email: <a href="#!">info@edu.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h4>DOWNLOAD OUR FREE MOBILE APPS</h4>
+                    <ul>
+                        <li><a href="#"><span class="sprite sprite-android"></span></a>
+                        </li>
+                        <li><a href="#"><span class="sprite sprite-ios"></span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>SOCIAL MEDIA</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COPY RIGHTS -->
+    <section class="wed-rights">
+        <div class="container">
+            <div class="row">
+                <div class="copy-right">
+                    <a target="_blank" href="">Designed by Atanu</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL MEDIA SHARE -->
+    <section>
+        <div class="icon-float">
+            <ul>
+                <li><a href="#" class="sh">1k <br> Share</a> </li>
+                <li><a href="#" class="fb1"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
+                <li><a href="#" class="gp1"><i class="fa fa-google-plus" aria-hidden="true"></i></a> </li>
+                <li><a href="#" class="tw1"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
+                <li><a href="#" class="li1"><i class="fa fa-linkedin" aria-hidden="true"></i></a> </li>
+                <li><a href="#" class="wa1"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> </li>
+                <li><a href="#" class="sh1"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> </li>
+            </ul>
+        </div>
+    </section>
+
+    <!--Import jQuery before materialize.js-->
+    <script src="{% static 'Edu_Master/js/main.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/materialize.min.js' %}"></script>
+    <script src="{% static 'Edu_Master/js/custom.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
