@@ -1,0 +1,313 @@
+{% extends 'Admin_pannel/base.html' %}
+{% load static %}
+{% block admin_link%}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+{% endblock %}
+<!-- Page Title -->
+{% block title%} Admin all user {% endblock %}
+{% block body %}
+{% load static %}
+
+<!--== BODY INNER CONTAINER ==-->
+<div class="sb2-2">
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href=""> Search</a>
+            </li>
+            <li class="page-back"><a href="javascript:history.go(-1)"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--== User Details ==-->
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Alert section start-->
+                <div class="d-flex justify-content-center">
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        {% if message.tags == "error"%}
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg> <strong>warning!</strong>{{ message }}
+
+                            <button type="button" class="close" id="btnalert" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="15" height="15" role="img" aria-label="Success:">
+                                <use xlink:href="#check-circle-fill" />
+                            </svg> <strong>Success!</strong>{{ message }}
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true" id="btnalert">&times;</span>
+                            </button>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Alert section end-->
+                
+
+                <!-- searched course start -->
+                {% if searched_course %}
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Course Details</h4>
+                        
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Course Name</th>
+                                        <th>Tainer</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>                                        
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in searched_course %}
+                                    <tr>
+                                        <td><span class="list-img"><img src="{{item.CourseBanner.url}}" alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_course_details' item.pk %}"><span class="list-enq-name">{{item.Course_Name}}</span></a>
+                                        </td>
+                                        <td>{{item.Course_Trainer}}</td>
+                                        <td>{{item.Start_Date}}</td>
+                                        <td>{{item.End_Date}}</td>
+                                        {% if item.Course_Status == "Active" %}
+                                        <td>
+                                            <span class="label label-success">{{item.Course_Status}}</span>
+                                        </td>
+                                        {% elif item.Course_Status == "Hold" %}
+                                        <td>
+                                            <span class="label label-warning">{{item.Course_Status}}</span>
+                                        </td>
+
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Course_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_course_details' item.pk %}" class="ad-st-view">Edit</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- searched course end -->
+
+
+                <!-- searched teacher start -->
+                {% elif searched_teacher %} 
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Teachers Details</h4>                        
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>                                        
+                                        <th>Id</th>
+                                        <th>Date of birth</th>
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in searched_teacher %}
+                                    <tr>
+                                        <td><span class="list-img"><img src="{{item.Teacher_Profile_Pic.url}}" alt=""></span>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'admin_teacher_details' item.pk  %}"><span class="list-enq-name">{{item.Teacher_Name}}</span></a>
+                                        </td>
+                                        <td>{{item.Teacher_Phone}}</td>
+                                        <td>{{item.Teacher_Email}}</td>
+                                        <td>{{item.Teacher_ID}}</td>                                        
+                                        <td>{{item.Teacher_DOB}}</td>
+                                        {% if item.Teacher_Status == "Active" %}
+                                        <td>
+                                            <span class="label label-success">{{item.Teacher_Status}}</span>
+                                        </td>
+                                        {% elif item.Teacher_Status == "Hold" %}
+                                        <td>
+                                            <span class="label label-warning">{{item.Teacher_Status}}</span>
+                                        </td>
+
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Teacher_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_teacher_details' item.pk  %}" class="ad-st-view">View</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- searched teacher end -->
+
+
+                <!-- searched student start -->
+                {% elif search_student %}
+               <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>Student Details</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>                                        
+                                        <th>Id</th>
+                                        <th>Date of birth</th>
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>                                
+                                <tbody>
+                                    {% for item in search_student %}
+                                    <tr>
+                                        <td><span class="list-img"><img src="{{item.Student_Profile_Pic.url}}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_student_details' item.pk %}"><span
+                                                    class="list-enq-name">{{item.Student_Name}}</span></a>
+                                        </td>
+                                        <td>{{item.Student_Phone}}</td>
+                                        <td>{{item.Student_Email}}</td>
+                                        
+                                        <td>{{item.Student_ID}}</td>
+                                        <td>{{item.Student_DOB}}</td>
+                                        {% if item.Student_Status == "Active" %}
+                                        <td>
+                                            <span class="label label-success">{{item.Student_Status}}</span>
+                                        </td>
+                                        {% elif item.Student_Status == "Hold" %}
+                                        <td>
+                                            <span class="label label-warning">{{item.Student_Status}}</span>
+                                        </td>
+
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Student_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_student_details' item.pk %}"
+                                                class="ad-st-view">View</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- searched student end -->
+
+
+                <!-- searched event start -->
+                {% elif searched_event %}
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>All Events</h4>                        
+                    </div>                    
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Start Date</th>
+                                        <th>Start Time</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                {% for item in searched_event %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="list-img"><img src="{{item.Event_Banner.url}}" alt=""></span></td>
+                                        <td>{{item.Event_Name}}</td>
+                                        <td>{{item.Event_Date}}</td>
+                                        <td>{{item.Event_Time}}</td>
+                                        {% if item.Event_Status == "Active"%}
+                                        <td>
+                                            <span class="label label-success">{{item.Event_Status}}</span>
+                                        </td>
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Event_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_event_details' item.pk %}" class="ad-st-view">Edit</a></td>
+                                    </tr>
+                                    
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>                
+                <!-- searched event end -->
+
+                {% else %}
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>NO result found for the keyword {{text_str}}</h4>                        
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+@media (max-width: 767px) {
+    .nav-links {
+      margin-bottom: 50px;
+    }
+  }
+  .nav-links .page-numbers {
+    border-color: #f4f4f4;
+    border-width: 3px;
+    border-style: solid;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    color: #6b6b6b;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 14px;
+    margin: 0 5px;
+    padding: 8px 0px;
+    text-align: center;
+    width: 36px;
+  }
+  @media (max-width: 767px) {
+    .nav-links .page-numbers {
+      padding: 4px 0px;
+      width: 25px;
+    }
+  }
+  .nav-links .page-numbers.prev {
+    border: medium none;
+    float: left;
+    height: auto;
+    margin-top: 3px;
+    width: auto;
+  }
+  .nav-links .page-numbers.prev:hover {
+    background-color: transparent;
+    color: #ff7236;
+  }
+  .nav-links .page-numbers.next {
+    border: medium none;
+    float: right;
+    height: auto;
+    margin-top: 3px;
+    width: auto;
+  }
+  .nav-links .page-numbers.next:hover {
+    background-color: transparent;
+    color: #ff7236;
+  }
+  @media (max-width: 767px) {
+    .nav-links .page-numbers {
+      margin: 0 2px;
+      text-align: center;
+    }
+  }
+  .nav-links .page-numbers:hover,
+  .nav-links .page-numbers.current {
+    color: #fff;
+    background-color: #ff7236;
+    border-color: #ff7236;
+  }

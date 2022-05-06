@@ -26,11 +26,12 @@
     <!--== breadcrumbs ==-->
     <div class="sb2-2-2">
         <ul>
-            <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
             </li>
             <li class="active-bre"><a href="#"> Notification Details</a>
             </li>
-            <li class="page-back"><a href="#"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            <li class="page-back"><a href="javascript:history.go(-1)"><i class="fa fa-backward" aria-hidden="true"></i>
+                    Back</a>
             </li>
         </ul>
     </div>
@@ -43,70 +44,23 @@
                     <div class="inn-title">
                         <h4>Notification Informations</h4>
                     </div>
-                    
+
                     <div class="tab-inn">
                         <form method="post" action="">
                             {% csrf_token %}
-                                            {% for field in form %}
-                                            <div class="form-group">
-                                                {{ field.label_tag }}
-                                                {{ field }}
-                                            </div>
-                                            {% endfor %}
-                                            <!-- {{form}} -->
-                            <!-- <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" value="{{duser.first_name}}" class="validate" required>
-                                    <label class="">First name</label>
-                                </div>
+                            {% for field in form %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" value={{duser.last_name}} class="validate" required>
-                                    <label class="">Last name</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="email" class="validate" value={{duser.email}} required>
-                                    <label class="">Email is</label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" value={{duser.username}} class="validate">
-                                    <label>User Name</label>
-                                </div>
-                            </div> -->
-                            <!-- <div class="row">
-                                <div class="file-field input-field col s12">
-                                    <div class="btn admin-upload-btn">
-                                        <span>File</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Profile image">
-                                    </div>
-                                </div>
-                            </div>  -->
-                            <!-- <div class="row">
-                                <div class="input-field col s12">
-                                    <select>
-                                        <option value="" disabled selected>Select User Type</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Teacher</option>
-                                        <option value="3">Student</option>
-                                    </select>
-                                </div>
-                            </div> -->
+                            {% endfor %}
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
                                             type="submit" value="Accept" class="waves-button-input"></i>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>

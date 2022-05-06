@@ -1,0 +1,111 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="pagecss1.css"> -->
+    {%load static%}
+    <link href="{% static 'User/css/AudioBook.css' %}" rel="stylesheet" type="text/css" />
+    <!-- <script src="pagejs1.js"></script> -->
+    <script type="text/javascript" src="{% static 'User/js/AudioBook.js' %}"></script>
+</head>
+
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row player-background">
+            <div class="col-md-1">
+                <div class="circle pause"></div>
+            </div>
+            <div class="wrap">
+
+                <div class="player paused">
+
+                    <div class="progress-bar">
+                        <div class="runner"></div>
+                    </div>
+                    <div class="album-art">
+                        <div class="cover"></div>
+                    </div>
+
+                    <div class="description">
+                        <div class="title">Something from nothing </div>
+                        <div class="sub-title"> </div>
+                    </div>
+                    {% for item in AudioBook %}
+                    <audio id="Sample" preload="auto">
+                        <source src="{{item.AudioBook}}" type="audio/mp4">
+                        <!-- <source src="./sounds/rain.ogg" type="video/ogg">  -->
+                      </audio>
+                      <a onClick="togglePlay()">Click</a>
+                    <div class="visualizer">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="play-button">
+                        <div class="lp-background"></div>
+                        <i class="fa fa-play" style="color:green"></i>
+                        <i class="fa fa-pause"></i>
+                    </div>
+
+                    <div class="time-indicator">
+                        <i class="fa fa-clock"></i>
+                        <span class="time">03:39</span>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

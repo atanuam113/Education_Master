@@ -4,3 +4,7 @@
     width: 41px;
     border-radius: 50%;
 }
+#admin_search_text
+{
+    visibility: hidden;
+}

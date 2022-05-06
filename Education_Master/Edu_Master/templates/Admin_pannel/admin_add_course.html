@@ -1,5 +1,21 @@
 {% extends 'Admin_pannel/base.html' %}
 {% load static %}
+{% block admin_link%}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+{% endblock %}
 <!-- Page Title -->
 {% block title%} Admin add course {% endblock %}
 {% block body %}
@@ -10,11 +26,12 @@
     <!--== breadcrumbs ==-->
     <div class="sb2-2-2">
         <ul>
-            <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
             </li>
             <li class="active-bre"><a href="#"> Add new course</a>
             </li>
-            <li class="page-back"><a href="index-2.html"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+            <li class="page-back"><a href="javascript:history.go(-1)"><i class="fa fa-backward" aria-hidden="true"></i>
+                    Back</a>
             </li>
         </ul>
     </div>
@@ -23,11 +40,40 @@
     <div class="sb2-2-3">
         <div class="row">
             <div class="col-md-12">
+                <!-- Alert section start-->
+                <div class="d-flex justify-content-center">
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        {% if message.tags == "error"%}
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg> <strong>warning!</strong>{{ message }}
+
+                            <button type="button" class="close" id="btnalert" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="15" height="15" role="img" aria-label="Success:">
+                                <use xlink:href="#check-circle-fill" />
+                            </svg> <strong>Success!</strong>{{ message }}
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true" id="btnalert">&times;</span>
+                            </button>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Alert section end-->
                 <div class="box-inn-sp admin-form">
                     <div class="sb2-2-add-blog sb2-2-1">
                         <h2>Add New Course</h2>
-                        <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:
-                        </p>
 
                         <ul class="nav nav-tabs tab-list">
                             <li class="active"><a data-toggle="tab" href="#home" aria-expanded="true"><i
@@ -36,276 +82,255 @@
                             <li class=""><a data-toggle="tab" href="#menu1" aria-expanded="false"><i class="fa fa-bed"
                                         aria-hidden="true"></i> <span>Course Syllabus</span></a>
                             </li>
-                            <li class=""><a data-toggle="tab" href="#menu2" aria-expanded="false"><i
-                                        class="fa fa-picture-o" aria-hidden="true"></i> <span>Banner Image</span></a>
+                            <li class=""><a data-toggle="tab" href="#menu2" aria-expanded="false"><i class="fa fa-file-video-o" style="font-size:18px"></i> <span>Course Module</span></a>
                             </li>
                             <li class=""><a data-toggle="tab" href="#menu3" aria-expanded="false"><i
-                                        class="fa fa-facebook" aria-hidden="true"></i> <span>Time table</span></a>
+                                        class="fa fa-clock" aria-hidden="true"></i> <span>Time table</span></a>
                             </li>
-                            <li class=""><a data-toggle="tab" href="#menu4" aria-expanded="false"><i class="fa fa-phone"
-                                        aria-hidden="true"></i> <span>Contact Info</span></a>
+                            <li class=""><a data-toggle="tab" href="#menu4" aria-expanded="false"><i class="fa fa-question"
+                                        aria-hidden="true" style="font-size: 20px;"></i> <span>Exam Table</span></a>
                             </li>
                         </ul>
 
-                        <div class="tab-content">
-                            <div id="home" class="tab-pane fade active in">
-                                <div class="box-inn-sp">
-                                    <div class="inn-title">
-                                        <h4>Course Information</h4>
-                                        <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
-                                    </div>
-                                    <div class="bor">
-                                        <form>
+                        <form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade active in">
+                                    <div class="box-inn-sp">
+                                        <div class="inn-title">
+                                            <h4>Course Information</h4>
+                                        </div>
+                                        <div class="bor">
                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                    <input id="list-title" type="text" class="validate">
+                                                <div class="input-field col s6">
+                                                    <input id="list-title" type="text" name="Course_Name"
+                                                        class="validate">
                                                     <label for="list-title" class="">Course Name</label>
                                                 </div>
-                                                <div class="input-field col s12">
-                                                    <input id="list-name" type="text" class="validate">
-                                                    <label for="list-name">Contact Person</label>
+                                                <div class="input-field col s6">
+                                                    <select name="Course_Trainer">
+                                                        <option value="" disabled selected>Select Teacher</option>
+                                                        <option value="1">Atanu Mondal</option>
+                                                        <option value="2">Gopal Mondal</option>
+                                                        <option value="3">Akash chandra</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field  col s6">
+                                                    <label id="startdate" name="startdate">Start Date</label>
+                                                    <input type="date" id="startdate" name="Start_Date">
+                                                </div>
+                                                <div class="input-field  col s6">
+                                                    <label id="Enddate" name="Enddate">End Date</label>
+                                                    <input type="date" id="end_date" name="End_Date">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <textarea class="materialize-textarea"></textarea>
+                                                    <textarea class="materialize-textarea"
+                                                        name="Course_Desc"></textarea>
                                                     <label>Course Descriptions:</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="input-field col s12">
-                                                    <select>
+                                                    <select name="Course_Status">
                                                         <option value="" disabled selected>Select Status</option>
-                                                        <option value="1">Active</option>
-                                                        <option value="2">De-Active</option>
-                                                        <option value="3">Delete</option>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Inactive">Inactive</option>
+                                                        <option value="Hold">Hold</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                    <i class="waves-effect waves-light btn-large waves-input-wrapper"
-                                                        ><input type="submit" class="waves-button-input"
-                                                            value="Submit"></i>
+                                                <div class="file-field input-field col s12">
+                                                    <div class="btn admin-upload-btn">
+                                                        <span>File</span>
+                                                        <input type="file" id="CourseBanner" name="CourseBanner"
+                                                            enctype="multipart/form-data">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text"
+                                                            placeholder="Course Banner">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                                            type="submit" class="waves-button-input" value="Submit"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu1" class="tab-pane fade">
+                                    <div class="inn-title">
+                                        <h4>Couse Syllabus</h4>
+
+                                    </div>
+                                    <div class="bor ad-cou-deta-h4">                                       
+                                        <div class="tab-inn">
+                                            <div class="table-responsive table-desi">
+                                                <table class="table table-hover" id="Couse_Syllabus">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Module Name</th>
+                                                            <th>Week</th>
+                                                            <th>Topic</th>
+                                                            <th>Descriptions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td id="col0"><input type="text" value=""
+                                                                    class="couseModuleText"></td>
+                                                            <td id="col1"><input type="text" value=""
+                                                                    class="couseModuleText"></td>
+                                                            <td id="col2"><input type="text" value=""
+                                                                    class="couseModuleText"></td>
+                                                            <td id="col3"><input type="text" value=""
+                                                                    class="couseModuleText"></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td><input type="button" value="Add Row"
+                                                            class="ad-st-view" onclick="addCouseSyllabusRows()" /></td>
+                                                        <td><input type="button" value="Delete Row" class="ad-st-view"
+                                                                onclick="deleteCouseSyllabusRows()" /></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu2" class="tab-pane fade">
+                                    <div class="inn-title">
+                                        <h4>Couse Module Content</h4>                                        
+                                    </div>
+                                    <div class="bor ad-cou-deta-h4">                                       
+                                        <div class="tab-inn">
+                                            <div class="table-responsive table-desi">
+                                                <table class="table table-hover" id="Couse_Module">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Course Module Topic</th>
+                                                            <th>Couse Content</th>
+                                                            <!-- <th>Date</th>                                                             -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td id="col00"><input type="text" value=""
+                                                                    class="couseModuleText"></td>
+                                                            <td id="col01"><input type="file" value=""
+                                                                    class="couseModuleText"></td>
+                                                            <!-- <td id="col2"><input type="date" value=""
+                                                                    class="couseModuleText"></td>                                                             -->
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td><input type="button" value="Add Row"
+                                                            class="ad-st-view" onclick="addCouseModuleRows()" /></td>
+                                                        <td><input type="button" value="Delete Row" class="ad-st-view"
+                                                                onclick="deleteCouseModuleRows()" /></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu3" class="tab-pane fade">
+                                    <div class="inn-title">
+                                        <h4>Time table</h4>                                        
+                                    </div>
+                                    <div class="bor ad-cou-deta-h4">
+                                        <div class="tab-inn">
+                                            <div class="table-responsive table-desi">
+                                                <table class="table table-hover" id="Couse_Time_Table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Day</th>
+                                                            <th>Date</th>
+                                                            <th>Stat Time</th>                                                            
+                                                            <th>End Time</th>                                                            
+                                                            <th>Topic</th>                                                            
+                                                            <th>Class Link</th>                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td id="col000"><input type="text" value="" class="couseModuleText"></td>
+                                                            <td id="col001"><input type="date" value="" class="couseModuleText"></td>
+                                                            <td id="col002"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col003"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col004"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col005"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td><input type="button" value="Add Row"
+                                                            class="ad-st-view" onclick="addCouseTimeTableRows()" /></td>
+                                                        <td><input type="button" value="Delete Row" class="ad-st-view"
+                                                                onclick="deleteCouseTimeTableRows()" /></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="menu4" class="tab-pane fade">
+                                    <div class="inn-title">
+                                        <h4>Exam Table</h4>                                        
+                                    </div>
+                                    <div class="bor ad-cou-deta-h4">
+                                        <div class="tab-inn">
+                                            <div class="table-responsive table-desi">
+                                                <table class="table table-hover" id="Couse_Exam_Table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Exam Name</th>
+                                                            <th>Date</th>
+                                                            <th>Stat Time</th>                                                            
+                                                            <th>End Time</th>                                                                                                                                                                               
+                                                            <th>Class Link</th>                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td id="col0000"><input type="text" value="" class="couseModuleText"></td>
+                                                            <td id="col0001"><input type="date" value="" class="couseModuleText"></td>
+                                                            <td id="col0002"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col0003"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col0004"><input type="text" value="" class="couseModuleText"></td>                
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <table>
+                                                    <tr>
+                                                        <td><input type="button" value="Add Row"
+                                                            class="ad-st-view" onclick="addCouseExamRows()" /></td>
+                                                        <td><input type="button" value="Delete Row" class="ad-st-view"
+                                                                onclick="deleteCouseExamRows()" /></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="menu1" class="tab-pane fade">
-                                <div class="inn-title">
-                                    <h4>Requirements, feese, student profile and how to apply</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
-                                </div>
-                                <div class="bor ad-cou-deta-h4">
-                                    <form>
-                                        <h4>Requirements:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Course Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>Feese:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="number" class="validate" required>
-                                                <label>1'st terms feese</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="number" class="validate" required>
-                                                <label>2'nd terms feese</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="number" class="validate" required>
-                                                <label>3'rd terms feese</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Price Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>Student Profile:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Student Profile Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>How to apply this course:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Step 1 Descriptions:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Step 2 Descriptions:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Step 3 Descriptions:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Step 4 Descriptions:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Step 5 Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"
-                                                    ><input type="submit" class="waves-button-input"
-                                                        value="Submit"></i>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="menu2" class="tab-pane fade">
-                                <div class="inn-title">
-                                    <h4>Photo Gallery</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
-                                </div>
-                                <div class="bor">
-                                    <form action="#">
-                                        <div class="file-field input-field">
-                                            <div class="btn admin-upload-btn">
-                                                <span>File</span>
-                                                <input type="file" multiple="">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text"
-                                                    placeholder="Upload course banner image">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"
-                                                    ><input type="submit" class="waves-button-input"
-                                                        value="Upload"></i>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="menu3" class="tab-pane fade">
-                                <div class="inn-title">
-                                    <h4>Time table</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
-                                </div>
-                                <div class="bor ad-cou-deta-h4">
-                                    <form>
-                                        <h4>1st semester:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Title:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>2nd semester:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Title:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>3rd semester:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Title:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <h4>4th semester:</h4>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input type="text" class="validate" required>
-                                                <label>Title:</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <textarea class="materialize-textarea"></textarea>
-                                                <label>Descriptions:</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"
-                                                    ><input type="submit" class="waves-button-input"
-                                                        value="Submit"></i>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="menu4" class="tab-pane fade">
-                                <div class="inn-title">
-                                    <h4>Contact Info</h4>
-                                    <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
-                                </div>
-                                <div class="bor">
-                                    <form>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="t5-n1" type="text" class="validate">
-                                                <label for="t5-n1">Contact Name</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input id="t5-n2" type="text" class="validate">
-                                                <label for="t5-n2">Alter Contact Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="t5-n3" type="number" class="validate">
-                                                <label for="t5-n3">Phone</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input id="t5-n4" type="number" class="validate">
-                                                <label for="t5-n4">Mobile</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="t5-n5" type="email" class="validate">
-                                                <label for="t5-n5">Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea id="t5-n6" class="materialize-textarea"></textarea>
-                                                <label for="t5-n6">Listing Descriptions:</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"
-                                                    ><input type="submit" class="waves-button-input"
-                                                        value="Upload"></i>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

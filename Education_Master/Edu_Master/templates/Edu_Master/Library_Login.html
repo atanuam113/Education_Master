@@ -1,0 +1,113 @@
+{% extends 'Edu_Master/base.html' %}
+{% load static %}
+{% block admin_link%}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+{% endblock %}
+<!-- Page Title -->
+{% block title%} Library Login {% endblock %}
+{% block body %}
+{% load static %}
+<section class="c-all p-semi p-event">
+    <!-- Alert section start-->
+    <div class="d-flex justify-content-center">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            {% if message.tags == "error"%}
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                    <use xlink:href="#exclamation-triangle-fill" />
+                </svg>
+                <div>
+                    <strong>warning!</strong>{{ message }}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                    <use xlink:href="#check-circle-fill" />
+                </svg>
+                <div>
+                    <strong>Success!</strong>{{ message }}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="outline: none;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <!-- Alert section end-->
+    <!--Login section-->
+    <div class="semi-inn">
+        <div class="semi-com semi-left">
+            <div class="all-title quote-title qu-new semi-text eve-reg-text">
+                <h2>Library Login</h2>
+                <p>desc</p>                
+                <div class="semi-deta eve-deta">
+                    <!-- <ul>
+                        <li>DATE:<span>{{item.Event_Date}}</span></li>
+                        <li>Time:<span>{{item.Event_Time}}</span></li>
+                        <li>Topic:<span>{{item.Event_Topic}}</span></li>
+                        <li>End Time:<span>{{item.Event_End_Time}}</span></li>
+                    </ul> -->
+                </div>
+                <p class="help-line">Login this for free!</p>
+            </div>
+        </div>
+        <div class="semi-com semi-right">
+            <div class="n-form-com semi-form">
+                <div class="col s12">
+                    <form class="form-horizontal" method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" required name="username" id="username" placeholder="User name">                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" required name="password" id="password" placeholder="Password">                                
+                            </div>
+                        </div>
+                        <div>
+                            <div class="s12 log-ch-bx">
+                                <p>
+                                    <input type="checkbox" id="test5" />
+                                    <label for="test5">Remember me</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-field s4">
+                                <input type="submit" value="Login" class="waves-effect waves-light log-in-btn"> </div>
+                        </div>			
+                    </form>
+                    <div>
+                        <div class="input-field s12"> <a href="{% url 'Library_ForgotPassword' %}" data-dismiss="modal" data-toggle="modal">Forgot password</a> | <a href="{% url 'Library_Signup' %}" data-dismiss="modal" data-toggle="modal">Create a new account</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

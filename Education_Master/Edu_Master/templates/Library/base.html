@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  {% load static %}
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+
+  <!-- Title -->
+  <title>{% block title%} {% endblock %}</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'Edu_Master/images/fav.ico' %}" type="image/x-icon">
+  <style>
+
+  </style>
+  {% block stylelink%} {% endblock %}
+  <link href="{% static 'Library/css/mmenu.positioning.css' %}" rel="stylesheet" type="text/css" />
+  
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
+    rel="stylesheet" />
+  <link href="{% static 'Library/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+  <!-- Mobile Menu -->
+  <link href="{% static 'Library/css/mmenu.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'Library/css/mmenu.positioning.css' %}" rel="stylesheet" type="text/css" />
+  <!-- Stylesheet -->
+  <link href="{% static 'Library/style.css' %}" rel="stylesheet" type="text/css" />  
+
+</head>
+<body class="layout-v2">
+  <!-- Start: Header Section -->
+  <header id="header" class="navbar-wrapper">
+    <div class="container">
+      <div class="row">
+        <nav class="navbar navbar-default">
+          <div class="col-sm-12">            
+            <div class="bg-light">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="navbar-header">
+                    <div class="navbar-brand">
+                      <h1>
+                        <a href="{% url 'Library_Index' %}">
+                          <img src="{% static 'Edu_Master/images/logo.png' %}" alt="" />
+                        </a>
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="navbar-collapse hidden-sm hidden-xs">
+                    <ul class="nav navbar-nav">
+                      <li class="dropdown active">
+                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                          href="{% url 'Library_Index' %}">Home</a>
+                      </li>
+                      <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                          href="{% url 'Library_Book_Media' %}">Books &amp; Media</a>
+                      </li>
+                      <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                          href="{% url 'Library_News_Event' %}">News &amp; Events</a>
+                      </li>
+                      <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                          href="{% url 'Library_Blog' %}">Blog</a>
+                      </li>
+                      <li><a href="{% url 'Library_Services' %}">Services</a></li>
+                      <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="" title="SignIn & SignUp">
+                          <span class="fa-user nav-icon fa profile-icon" aria-hidden="true">
+                            {{ user.username }}
+                            <span class="caret"></span></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{% url 'home' %}"><i class="fa fa-sign-out"></i>Log-Out</a></li>
+                          <li><a href="#"><i class="fa fa-gear fa-spin"></i>Profile
+                              settings</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-menu hidden-lg hidden-md">
+            <a href="#mobile-menu"><i class="fa fa-navicon"></i></a>
+            <div id="mobile-menu">
+              <ul>
+                <li class="mobile-title">
+                  <h4>Navigation</h4>
+                  <a href="#" class="close"></a>
+                </li>
+                <li>
+                  <a href="{% url 'Library_Index' %}">Home</a>
+                </li>
+                <li>
+                  <a href="{% url 'Library_Book_Media' %}">Books &amp; Media</a>
+                </li>
+                <li>
+                  <a href="{% url 'Library_News_Event' %}">News &amp; Events</a>
+                </li>
+                <li>
+                  <a href="{% url 'Library_Blog' %}">Blog</a>
+                </li>
+                <li><a href="{% url 'Library_Services' %}">Services</a></li>
+                <!-- <li><a href="services.html">None</a></li> -->
+
+                <li class="dropdown" style="font-size: 26px;left:210px;">
+                  <a data-toggle="dropdown" class="dropdown-toggle disabled" href="" title="SignIn & SignUp">
+                    <span class="fa-user nav-icon fa profile-icon" aria-hidden="true">
+                      {{ user.username }}
+                      <span class="caret"></span></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'home' %}"><i class="fa fa-sign-out"></i>Log-Out</a></li>
+                    <li><a href="#"><i class="fa fa-gear fa-spin"></i>Profile
+                        settings</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- End: Header Section -->
+
+  {% block body %}
+
+  {% endblock %}
+
+  <!-- Start: Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div id="footer-widgets">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 widget-container">
+            <div id="text-2" class="widget widget_text">
+              <h3 class="footer-widget-title">About EDU-Library</h3>
+              <span class="underline left"></span>
+              <div class="textwidget">
+                It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking.
+              </div>
+              <address>
+                <div class="info">
+                  <i class="fa fa-location-arrow"></i>
+                  <span>21 King Street, Melbourne, Victoria 3000 Australia</span>
+                </div>
+                <div class="info">
+                  <i class="fa fa-envelope"></i>
+                  <span><a href="mailto:support@libraria.com">support@libraria.com</a></span>
+                </div>
+                <div class="info">
+                  <i class="fa fa-phone"></i>
+                  <span><a href="tel:012-345-6789">+ 012-345-6789</a></span>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 widget-container">
+            <div id="nav_menu-2" class="widget widget_nav_menu">
+              <h3 class="footer-widget-title">Quick Links</h3>
+              <span class="underline left"></span>
+              <div class="menu-quick-links-container">
+                <ul id="menu-quick-links" class="menu">
+                  <li><a href="#">Library News</a></li>
+                  <li><a href="#">History</a></li>
+                  <li><a href="#">Meet Our Staff</a></li>
+                  <li><a href="#">Board of Trustees</a></li>
+                  <li><a href="#">Budget</a></li>
+                  <li><a href="#">Annual Report</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix hidden-lg hidden-md hidden-xs tablet-margin-bottom"></div>
+          <div class="col-md-2 col-sm-6 widget-container">
+            <div id="text-4" class="widget widget_text">
+              <h3 class="footer-widget-title">Timing</h3>
+              <span class="underline left"></span>
+              <div class="timming-text-widget">
+                <time datetime="2017-02-13">Mon - Thu: 9 am - 9 pm</time>
+                <time datetime="2017-02-13">Fri: 9 am - 6 pm</time>
+                <time datetime="2017-02-13">Sat: 9 am - 5 pm</time>
+                <time datetime="2017-02-13">Sun: 1 pm - 6 pm</time>
+                <ul>
+                  <li><a href="#">Closings</a></li>
+                  <li><a href="#">Branches</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 widget-container">
+            <div class="widget twitter-widget">
+              <h3 class="footer-widget-title">Latest Tweets</h3>
+              <span class="underline left"></span>
+              <div id="twitter-feed">
+                <ul>
+                  <li>
+                    <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
+                      <a href="#">template-libraria.com</a>
+                    </p>
+                  </li>
+                  <li>
+                    <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
+                      <a href="#">template-libraria.com</a>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-text col-md-3">
+            <p><a target="_blank" href="">EDU-Library</a></p>
+          </div>
+          <div class="col-md-9 pull-right">
+            <ul>
+              <li><a href="index-2.html">Home</a></li>
+              <li><a href="books-media-list-view.html">Books &amp; Media</a></li>
+              <li><a href="news-events-list-view.html">News &amp; Events</a></li>
+              <li><a href="#">Kids &amp; Teens</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="#">Research</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End: Footer -->
+
+  <!-- jQuery Latest Version 1.x -->
+  <script type="text/javascript" src="{% static 'Library/js/jquery-1.12.4.min.js' %}"></script>
+
+  <!-- jQuery UI -->
+  <script type="text/javascript" src="{% static 'Library/js/jquery-ui.min.js' %}"></script>
+
+  <!-- jQuery Easing -->
+  <script type="text/javascript" src="{% static 'Library/js/jquery.easing.1.3.js' %}"></script>
+
+  <!-- Bootstrap -->
+  <script type="text/javascript" src="{% static 'Library/js/bootstrap.min.js' %}"></script>
+
+  <!-- Profile navbar -->
+  <script type="text/javascript" src="{% static 'Library/js/sidebars.js' %}"></script>
+
+  <!-- Mobile Menu -->
+  <script type="text/javascript" src="{% static 'Library/js/mmenu.min.js' %}"></script>
+
+  <!-- Harvey - State manager for media queries -->
+  <script type="text/javascript" src="{% static 'Library/js/harvey.min.js' %}"></script>
+
+  <!-- Waypoints - Load Elements on View -->
+  <script type="text/javascript" src="{% static 'Library/js/waypoints.min.js' %}"></script>
+
+  <!-- Facts Counter -->
+  <script type="text/javascript" src="{% static 'Library/js/facts.counter.min.js' %}"></script>
+
+  <!-- MixItUp - Category Filter -->
+  <script type="text/javascript" src="{% static 'Library/js/mixitup.min.js' %}"></script>
+
+  <!-- Owl Carousel -->
+  <script type="text/javascript" src="{% static 'Library/js/owl.carousel.min.js' %}"></script>
+
+  <!-- Accordion -->
+  <script type="text/javascript" src="{% static 'Library/js/accordion.min.js' %}"></script>
+  <!-- Responsive Tabs -->
+  <script type="text/javascript" src="{% static 'Library/js/responsive.tabs.min.js' %}"></script>
+
+  <!-- Responsive Table -->
+  <script type="text/javascript" src="{% static 'Library/js/responsive.table.min.js' %}"></script>
+
+  <!-- Masonry -->
+  <script type="text/javascript" src="{% static 'Library/js/masonry.min.js' %}"></script>
+
+  <!-- Carousel Swipe -->
+  <script type="text/javascript" src="{% static 'Library/js/carousel.swipe.min.js' %}"></script>
+
+  <!-- bxSlider -->
+  <script type="text/javascript" src="{% static 'Library/js/bxslider.min.js' %}"></script>
+
+  <!-- Custom Scripts -->
+  <script type="text/javascript" src="{% static 'Library/js/main.js' %}"></script>
+
+</body>
+
+
+</html>
