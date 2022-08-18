@@ -20,9 +20,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SECRET_KEY = os.environ.get('SECRET_KEYS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG')) == "1"
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 if not DEBUG:
     ALLOWED_HOSTS += os.environ.get('ALLOWED_HOST')
 

@@ -47,7 +47,7 @@
                     <div class="messages">
                         {% for message in messages %}
                         {% if message.tags == "error"%}
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <div class="alert alert-danger d-flex align-userprofiles-center" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg> <strong>warning!</strong>{{ message }}
@@ -75,7 +75,9 @@
 
                 <div class="box-inn-sp admin-form">
                     <div class="sb2-2-add-blog sb2-2-1">
-                        <h2>Admin account settings</h2>
+                        <div class="inn-title">
+                            <h4>Admin account settings</h4>
+                        </div>                        
                         
                         <div class="udb">
 
@@ -87,52 +89,52 @@
                                             <tr>
                                                 <td>Admin Profile Photo</td>
                                                 <td>:</td>
-                                                <td><img  class="userprofile" src="/media/{{item.Admin_Profile_Pic}}" alt="user"></td>
+                                                <td><img  class="userprofile" src="/media/{{userprofile.Admin_Profile_Pic}}" alt="user"></td>
                                             </tr>
                                             <tr>
                                                 <td>Admin Name</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_Name}}</td>
+                                                <td>{{userprofile.Admin_Name}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Admin Id</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_ID}}</td>
+                                                <td>{{userprofile.Admin_ID}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Eamil</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_Email}}</td>
+                                                <td>{{userprofile.Admin_Email}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Phone</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_Phone}}</td>
+                                                <td>{{userprofile.Admin_Phone}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Date of birth</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_DOB}}</td>
+                                                <td>{{userprofile.Admin_DOB}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Address</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_Address}}</td>
+                                                <td>{{userprofile.Admin_Address}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Bio</td>
                                                 <td>:</td>
-                                                <td>{{item.Admin_Bio}}</td>
+                                                <td>{{userprofile.Admin_Bio}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Status</td>
                                                 <td>:</td>
-                                                <td><span class="db-done">{{item.Admin_Status}}</span> </td>
+                                                <td><span class="db-done">{{userprofile.Admin_Status}}</span> </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="sdb-bot-edit">                            
-                                        <a href="{% url 'Admin_personal_details_edit' item.pk %}" class="waves-effect waves-light btn-large sdb-btn sdb-btn-edit"><i class="fa fa-pencil"></i> Edit my profile</a>
+                                        <a href="{% url 'Admin_personal_details_edit' userprofile.pk %}" class="waves-effect waves-light btn-large sdb-btn sdb-btn-edit"><i class="fa fa-pencil"></i> Edit my profile</a>
                                     </div>
                                 </div>
                             </div>

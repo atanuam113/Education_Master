@@ -53,16 +53,16 @@
             <div class="wed-hom-ser">
                 <ul>
                     <li>
-                        <a href="awards.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic1.png' %}" alt=""> Academy</a>
+                        <a href="{%url 'award' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic1.png' %}" alt=""> Academy</a>
                     </li>
                     <li>
-                        <a href="admission.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic2.png' %}" alt=""> Admission</a>
+                        <a href="{%url 'Library_Login' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic2.png' %}" alt=""> Library</a>
                     </li>
                     <li>
-                        <a href="all-courses.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic4.png' %}" alt=""> Courses</a>
+                        <a href="{%url 'all_course' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic4.png' %}" alt=""> Courses</a>
                     </li>
                     <li>
-                        <a href="seminar.html" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic3.png' %}" alt=""> Seminar</a>
+                        <a href="{%url 'event' %}" class="waves-effect waves-light btn-large wed-pop-ser-btn"><img src="{% static 'Edu_Master/images/icon/h-ic3.png' %}" alt=""> Seminar</a>
                     </li>
                 </ul>
             </div>
@@ -160,174 +160,42 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            {% if HighRatedCourse %}
+        <div class="row">
+            {% for item in HighRatedCourse %}
+            <div class="col-xs-6 col-sm-6 col-md-6">
                 <div>
                     <!--POPULAR COURSES-->
                     <div class="home-top-cour">
                         <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-1.jpg' %}" alt=""> </div>
+                        <div class="col-md-3"> <img style="height: 140px; width: 130px;" src="{{item.CourseBanner.url}}"
+                                alt=""> </div>
                         <!--POPULAR COURSES: CONTENT-->
                         <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Aerospace Engineering</h3>
+                            <a href="{% url 'course_details' %}">
+                                <h3>{{item.Course_Name}}</h3>
                             </a>
-                            <h4>Technology / Space / Aerospace</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
+                            <h4>{{item.Course_Skill}}</h4>
+                            <p>{{item.Course_Desc|truncatewords:"15"}}....</p>
+                            <p><b>{{item.Course_Instructor}}</b></p>
+                            <span class="home-top-cour-rat">{{item.Course_Rating}}</span>
                             <div class="hom-list-share">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>10 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 570</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-2.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Agriculture Courses</h3>
-                            </a>
-                            <h4>Technology / Space / Aerospace</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>40 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 320</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-3.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Marine Engineering</h3>
-                            </a>
-                            <h4>Technology / Ocean / Marine</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>04 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 1020</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-4.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Building, Construction Management</h3>
-                            </a>
-                            <h4>Technology / Construction / Building</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>32 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 124</a> </li>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-eye"
+                                                aria-hidden="true"></i> Book Now</a> </li>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-bar-chart"
+                                                aria-hidden="true"></i>{{item.Course_level}}</a></li>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-clock-o"
+                                                aria-hidden="true"></i>Total: 570</a> </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-5.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Fashion Technology</h3>
-                            </a>
-                            <h4>Technology / Trends / Fashion</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>10 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 570</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-6.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Agriculture Courses</h3>
-                            </a>
-                            <h4>Technology / Space / Aerospace</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>40 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 320</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-7.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Marine Engineering</h3>
-                            </a>
-                            <h4>Technology / Ocean / Marine</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>04 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 1020</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--POPULAR COURSES-->
-                    <div class="home-top-cour">
-                        <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{% static 'Edu_Master/images/course/sm-8.jpg' %}" alt=""> </div>
-                        <!--POPULAR COURSES: CONTENT-->
-                        <div class="col-md-9 home-top-cour-desc">
-                            <a href="#">
-                                <h3>Building, Construction Management</h3>
-                            </a>
-                            <h4>Technology / Construction / Building</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
-                            <div class="hom-list-share">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i>32 Aavailable</a> </li>
-                                    <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> 124</a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+        </div>
+        {% endif %}           
         </div>
     </div>
 </section>
@@ -336,7 +204,7 @@
 <section>
     <div class="container com-sp pad-bot-0">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <!--<div class="ho-ex-title">
                         <h4>Upcoming Event</h4>
                     </div>-->
@@ -395,7 +263,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <!--<div class="ho-ex-title">
                         <h4>Upcoming Event</h4>
                     </div>-->
@@ -453,10 +321,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
-                <!--<div class="ho-ex-title">
-                        <h4>Upcoming Event</h4>
-                    </div>-->
+            <!-- <div class="col-md-4">               
                 <div class="ho-ev-latest ho-ev-latest-bg-3">
                     <div class="ho-lat-ev">
                         <h4>Register & Login</h4>
@@ -525,7 +390,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

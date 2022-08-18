@@ -2,7 +2,7 @@ from distutils.command.upload import upload
 from statistics import mode
 from xml.parsers.expat import model
 from django.db import models
-import datetime
+from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -18,39 +18,31 @@ class User(AbstractUser):
         ('LibraryAdmin','LibraryAdmin'),
     )
     Registered_As = models.CharField(max_length=20,choices=user_type,default="")
+    user_DOB = models.DateField(null=True)
+    user_phone = models.CharField(max_length=100,default="None")
     class Meta:
         swappable = 'AUTH_USER_MODEL'
 
-class Contact_Us(models.Model):
-    contactus_id = models.AutoField(primary_key=True)
-    contactus_name = models.CharField(max_length=50,default="")
-    contactus_phone = models.CharField(max_length=20,default="")
-    contactus_email = models.CharField(max_length=100,default="")
-    contactus_message = models.CharField(max_length=100,default="")
-
-    def __str__(self):
-        return self.contactus_name 
-
 class Student_Profile(models.Model):
     Student_PK = models.AutoField(primary_key=True)
-    Student_ID = models.CharField(max_length=100,default=str(Student_PK))
+    Student_ID = models.CharField(max_length=100,default="None")
     Student_User_PK = models.OneToOneField(User,on_delete=models.CASCADE)
     Student_Name = models.CharField(max_length=200,default="")
     Student_Email = models.CharField(max_length=200,default="")
-    Student_Phone = models.CharField(max_length=200,default="")
+    Student_Phone = models.CharField(max_length=200,default="None")
     Student_DOB = models.DateField()
-    Student_Address = models.CharField(max_length=500,default="")
+    Student_Address = models.CharField(max_length=500,default="None")
     Student_Type = (
         ('Active','Active'),
         ('Inactive','Inactive'),
         ('Hold','Hold'),
     )
     Student_Status = models.CharField(max_length=20,choices=Student_Type,default="")
-    Student_Bio = models.CharField(max_length=1000,default="")
+    Student_Bio = models.CharField(max_length=1000,default="None")
     Student_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Student',null= True,blank = True)
-    Student_Github = models.CharField(max_length=200,default="")
-    Student_Linkedin = models.CharField(max_length=200,default="")
-    Student_Twitter = models.CharField(max_length=200,default="")
+    Student_Github = models.CharField(max_length=200,default="None")
+    Student_Linkedin = models.CharField(max_length=200,default="None")
+    Student_Twitter = models.CharField(max_length=200,default="None")
 
     def __str__(self):
         return self.Student_Name
@@ -84,6 +76,7 @@ class Teacher_Profile(models.Model):
         ('Inactive','Inactive'),
         ('Hold','Hold'),
     )
+    Teacher_Dept = models.CharField(max_length=500,default="None")
     Teacher_Status = models.CharField(max_length=20,choices=Teacher_Type,default="")
     Teacher_Bio = models.CharField(max_length=1000,default="None")
     Teacher_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Teacher',null= True,blank = True)
@@ -118,6 +111,30 @@ class Admin_Profile(models.Model):
     def __str__(self):
         return self.Admin_Name
 
+class Librarian_Profile(models.Model):
+    Librarian_PK = models.AutoField(primary_key=True)
+    Librarian_ID = models.CharField(max_length=100,default="")
+    Librarian_User_PK = models.OneToOneField(User,on_delete=models.CASCADE)
+    Librarian_Name = models.CharField(max_length=200,default="")
+    Librarian_Email = models.CharField(max_length=200,default="")
+    Librarian_Phone = models.CharField(max_length=200,default="")
+    Librarian_DOB = models.DateField()
+    Librarian_Address = models.CharField(max_length=500,default="")
+    Librarian_Type = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    Librarian_Status = models.CharField(max_length=20,choices=Librarian_Type,default="")
+    Librarian_Bio = models.CharField(max_length=1000,default="None")
+    Librarian_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Librarian',null= True,blank = True)
+    Librarian_Github = models.CharField(max_length=200,default="None")
+    Librarian_Linkedin = models.CharField(max_length=200,default="None")
+    Librarian_Twitter = models.CharField(max_length=200,default="None")
+    
+    def __str__(self):
+        return self.Librarian_Name
+
 class Events(models.Model):
     Event_ID = models.AutoField(primary_key=True)
     Event_Name = models.CharField(max_length=200,default="")
@@ -141,6 +158,10 @@ class Events(models.Model):
         ('InActive','InActive')        
     )
     Event_Status = models.CharField(max_length=50,choices=Event_StatusChoice,default="")
+    slug = models.SlugField(null=True)
+
+    def get_absolute_url(self):
+        return reverse("event_register", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.Event_Name
@@ -150,6 +171,7 @@ class Event_Register(models.Model):
     Event_ID = models.ManyToManyField(Events)
     Student_PK = models.ManyToManyField(Student_Profile)
     Registration_Date = models.DateTimeField(auto_now=True)
+    
 
 # Library section 
 class Books(models.Model):
@@ -186,24 +208,53 @@ class Books(models.Model):
         self.Book_Cover.delete()
         super().delete(*args, **kwargs) 
 
+class Book_Request(models.Model):
+    Book_Request_ID = models.AutoField(primary_key=True)
+    Book_Request_Name = models.CharField(max_length=500,default="None")
+    Book_Request_Author = models.CharField(max_length=200,default="None")
+    Book_Request_ISBN = models.CharField(max_length=30,default="0")
+    Book_Request_Date = models.DateField(null=True)
+    Req_status = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    Book_Request_Status = models.CharField(max_length=50,choices=Req_status,default="None")
+    Book_Request_By = models.ForeignKey(Student_Profile,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.Book_Request_Name
+        
 # Course section 
 class Course_Detail(models.Model):
     Course_ID = models.AutoField(primary_key=True)
     Course_Name = models.CharField(max_length=100,default="")
     Start_Date = models.DateField()
     End_Date = models.DateField()
-    Course_Trainer = models.CharField(max_length=500,default="")
+    Course_Instructor = models.ForeignKey(Teacher_Profile,on_delete=models.CASCADE,null= True,blank = True)
     Course_Desc = models.TextField(default="")
+    slug = models.SlugField(null=True)
     status_type = (
         ('Active','Active'),
         ('Inactive','Inactive'),
         ('Hold','Hold'),
     )
+    course_type = (
+        ('Introductory','Introductory'),
+        ('Intermediate','Intermediate'),
+        ('Advanced','Advanced'),
+    )
+    Course_level = models.CharField(max_length=20,choices=course_type,default="")
+    Course_Rating = models.CharField(max_length=20,default="0")
     Course_Status = models.CharField(choices=status_type,default="",max_length=100)
+    Course_Skill = models.CharField(max_length=200,default="")
     CourseBanner = models.ImageField(upload_to = 'Edu_Master\Course',null=True,blank=True)
 
     def __str__(self):
         return self.Course_Name
+
+    def get_absolute_url(self):
+        return reverse("article_detail", kwargs={"slug": self.slug})
     
 class Course_Syllabus(models.Model):
     Course_Syllabus_ID = models.AutoField(primary_key=True)
@@ -260,5 +311,35 @@ class Course_Exam_Table(models.Model):
         return self.Course_Name
 
 
+class Address_Book(models.Model):
+    AB_ID = models.AutoField(primary_key=True)
+    AB_Party_Id = models.CharField(max_length=50,default="None")
+    AB_Party_Address = models.CharField(max_length=500,default="None")
+    AB_Party_City = models.CharField(max_length=200,default="None")
+    AB_Party_State = models.CharField(max_length=200,default="None")
+    AB_Party_Country = models.CharField(max_length=200,default="None")
+    AB_Party_Zip = models.CharField(max_length=200,default="None")
 
 
+class Contact_us(models.Model):
+    Contact_ID = models.AutoField(primary_key=True)
+    Contact_Name = models.CharField(max_length=200,default="None")
+    Contact_Email = models.EmailField(max_length=254)
+    Contact_Message = models.TextField(default="None")
+    Contact_Created_By = models.CharField(max_length=200,default= "None")
+    Contact_Created_Date = models.DateTimeField(null = True)
+    Contact_Last_Updated_Date = models.DateTimeField(null = True)
+    Contact_Last_Updated_By = models.ForeignKey(Admin_Profile,on_delete=models.CASCADE,default=1)
+    Contact_Effective_End_Date = models.DateTimeField(null = True)
+    Contact_Version = models.CharField(default="1",max_length=20)
+    Contact_Reply = models.TextField(default="None")
+    Status_option = (
+        ('Solved','Solved'),
+        ('Pending','Pending'),
+        ('Hold','Hold')
+    )
+    Contact_Status = models.CharField(max_length=100,choices=Status_option,default = "None")
+
+
+    def __str__(self):
+        return self.Contact_Name

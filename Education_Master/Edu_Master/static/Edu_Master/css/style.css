@@ -35,6 +35,10 @@
 /*-------------------------------------------------*/
 /* =  1.All Pages Common CSS Styles
 /*-------------------------------------------------*/
+#LoginPage
+{
+    background-image: url('../images/bg/6.jpg');
+}
 .couseModuleText
 {
     font-size: 15px;
@@ -2567,7 +2571,7 @@
     /* bottom: 0px;
      */
      background: #fff;
-     width: 60%;
+     width: 72%;
      margin: 0 auto;
      margin-top: 5%;
 }
@@ -2575,7 +2579,7 @@
      float: left;
      width: 40%;
      background: url('../images/login.html') #002147 no-repeat center center;
-     padding: 12.5% 6%;
+     padding: 18.5% 6%;
      color: #fff;
      height: 100%;
      bottom: 0px;

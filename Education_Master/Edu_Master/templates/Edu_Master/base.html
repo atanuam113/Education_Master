@@ -165,27 +165,32 @@
                                 <li><a href="{% url 'Library_Login' %}">Library</a></li>
                                 <li><a href="{% url 'contact_us' %}">Contact us</a>
                                 </li>
+                                <li><a href="{% url 'home' %}">Ask a question</a>
+                                </li>
                                 <li>
                                     <!--== MY ACCCOUNT ==-->
                                     <!-- <div class="col-md-2 col-sm-3 col-xs-4"> -->
-                                        <!-- Dropdown Trigger -->
-                                        {% if userprofile %}
-                                        <a class='dropdown-button ' href='#'
-                                            data-activates='top-menu'><img class="userprofile"
-                                                src="{{userprofile.Student_Profile_Pic.url}}" alt="" /> {{ user.username }} <i
-                                                style="font-size:13px" class="fa">&#xf107;</i>
-                                        </a>
-                                        {% endif %}
-                                        <!-- Dropdown Structure -->
-                                        <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                                            <li><a href="admin-panel-setting.html" class="waves-effect"><i
-                                                        class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i
-                                                        class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
-                                            </li>
-                                        </ul>
+                                    <!-- Dropdown Trigger -->
+                                    {% if userprofile %}
+                                    <a class='dropdown-button ' href='#' data-activates='top-menu'><img
+                                            class="userprofile" src="{{userprofile.Student_Profile_Pic.url}}" alt="" />
+                                        {{ user.username }} <i style="font-size:13px" class="fa">&#xf107;</i>
+                                    </a>
+                                    {% else %}
+                                    <a class='waves-effect dropdown-button top-user-pro profileImg' href='#'
+                                        data-activates='top-menu'>{{user.username|capfirst|slice:'0:1'}}<img class="profileImg" src="" alt="" />My Account <i style="font-size:13px" class="fa">&#xf107;</i>
+                                    </a>
+                                    {% endif %}
+                                    <!-- Dropdown Structure -->
+                                    <ul id='top-menu' class='dropdown-content top-menu-sty'>
+                                        <li><a href="admin-panel-setting.html" class="waves-effect"><i
+                                                    class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i
+                                                    class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                                        </li>
+                                    </ul>
                                     <!-- </div> -->
                                 </li>
                             </ul>
@@ -202,13 +207,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="search-form">
-                            <form method="post" action="{% url 'search_course' %}">
+                            <form method="post" action="{% url 'student_search' %}">
                                 {% csrf_token %}
                                 <div class="sf-type">
                                     <div class="sf-input">
-                                        <input type="text" id="sf-box" placeholder="Search course..." name="search_course">
+                                        <input type="text" id="sf-box" placeholder="Search course..."
+                                            name="search_keyword">
                                     </div>
-                                    <div class="sf-list">
+                                    <!-- <div class="sf-list">
                                         <ul>
                                             <li><a href="">Accounting/Finance</a></li>
                                             <li><a href="">civil engineering</a></li>
@@ -227,10 +233,10 @@
                                             <li><a href="">Networking Courses</a></li>
                                             <li><a href="">Information technology</a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="sf-submit">
-                                    <input type="submit" value="Search Course">
+                                    <input type="submit" value="Search">
                                 </div>
                             </form>
                         </div>
@@ -239,7 +245,6 @@
             </div>
         </div>
     </section>
-
     {% block body %}
 
     {% endblock %}

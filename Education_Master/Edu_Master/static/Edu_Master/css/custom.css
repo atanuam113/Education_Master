@@ -8,3 +8,34 @@
 {
     visibility: hidden;
 }
+#admin_profile_pic
+{
+    height: 40px;
+    width: 41px;
+    border-radius: 50%;
+    background: #512DA8;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+/* #coursebannerimg
+{
+    height: 200px !important;
+    width: 200px;
+} */
+#librarian_profile_pic
+{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;   
+    
+}
+/* .profileImg {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #512DA8;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+  } */

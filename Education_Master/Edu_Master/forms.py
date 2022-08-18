@@ -9,7 +9,12 @@ from django.forms import ModelForm
 class User_Registration_Request(forms.ModelForm):
     class Meta:
         model = User      
-        fields = ('first_name','last_name','email','username','Registered_As')
+        fields = ('first_name','last_name','email','username','user_DOB','user_phone','Registered_As')
+
+class admin_contact_Reply(forms.ModelForm):
+    class Meta:
+        model = Contact_us
+        fields = ('Contact_Name','Contact_Message','Contact_Reply')
 
 class User_Profile_Edit(forms.ModelForm):
     class Meta:
@@ -26,6 +31,11 @@ class Admin_Teacher_Profile_Edit(forms.ModelForm):
     class Meta:
         model = Teacher_Profile      
         fields = ('Teacher_Bio','Teacher_Phone','Teacher_Address','Teacher_Github','Teacher_Linkedin','Teacher_Twitter','Teacher_Status','Teacher_Profile_Pic')
+
+class Admin_Librarian_Profile_Edit(forms.ModelForm):
+    class Meta:
+        model = Librarian_Profile      
+        fields = ('Librarian_Bio','Librarian_Phone','Librarian_Address','Librarian_Github','Librarian_Linkedin','Librarian_Twitter','Librarian_Status','Librarian_Profile_Pic')
 
 class Admin_Personal_Details(forms.ModelForm):
     class Meta:

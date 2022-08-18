@@ -5,30 +5,36 @@ function addCouseSyllabusRows(){
 	var row = table.insertRow(rowCount);
 	for(var i =0; i < cellCount; i++){
 		var cell = 'cell'+i;
+		alert(cell);
 		cell = row.insertCell(i);
 		var copycel = document.getElementById('col'+i).innerHTML;
 		cell.innerHTML=copycel;
 	
 	}
+	document.getElementById("totalSyllabusRows").value = rowCount;
+	
+	
 }
 
 function deleteCouseSyllabusRows(){
 	var table = document.getElementById('Couse_Syllabus');
-	var rowCount = table.rows.length;
-	if(rowCount > '2'){
-		var row = table.deleteRow(rowCount-1);
-		rowCount--;
+	var rowCount1 = table.rows.length;
+	if(rowCount1 > '2'){
+		var row = table.deleteRow(rowCount1-1);
+		rowCount1--;
 	}
 	else{
 		alert('There should be atleast one row');
 	}
+	document.getElementById("totalSyllabusRows").value = rowCount1-1;
+	
 }
 
 function addCouseModuleRows(){ 
 	var table = document.getElementById('Couse_Module');
-	var rowCount = table.rows.length;
+	var rowCount2 = table.rows.length;
 	var cellCount = table.rows[0].cells.length; 
-	var row = table.insertRow(rowCount);
+	var row = table.insertRow(rowCount2);
 	for(var i =0; i <= cellCount; i++){
 		var cell = 'cell0'+i;
 		cell = row.insertCell(i);
@@ -42,26 +48,31 @@ function addCouseModuleRows(){
 		}
 	
 	}
+	
+	document.getElementById("totalModuleRows").value = rowCount2;
+	
 }
 
 
 function deleteCouseModuleRows(){
 	var table = document.getElementById('Couse_Module');
-	var rowCount = table.rows.length;
-	if(rowCount > '2'){
-		var row = table.deleteRow(rowCount-1);
-		rowCount--;
+	var rowCount3 = table.rows.length;
+	if(rowCount3 > '2'){
+		var row = table.deleteRow(rowCount3-1);
+		rowCount3--;
 	}
 	else{
 		alert('There should be atleast one row');
 	}
+	document.getElementById("totalModuleRows").value = rowCount3-1;
+	
 }
 
 function addCouseTimeTableRows(){ 
 	var table = document.getElementById('Couse_Time_Table');
-	var rowCount = table.rows.length;
+	var rowCount4 = table.rows.length;
 	var cellCount = table.rows[0].cells.length; 
-	var row = table.insertRow(rowCount);
+	var row = table.insertRow(rowCount4);
 	for(var i =0; i <= cellCount; i++){
 		var cell = 'cell00'+i;
 		cell = row.insertCell(i);
@@ -69,25 +80,29 @@ function addCouseTimeTableRows(){
 		cell.innerHTML=copycel;		
 	
 	}
+	document.getElementById("totalTimeTableRows").value = rowCount4;
+	
 }
 
 function deleteCouseTimeTableRows(){
 	var table = document.getElementById('Couse_Time_Table');
-	var rowCount = table.rows.length;
-	if(rowCount > '2'){
-		var row = table.deleteRow(rowCount-1);
-		rowCount--;
+	var rowCount5 = table.rows.length;
+	if(rowCount5 > '2'){
+		var row = table.deleteRow(rowCount5-1);
+		rowCount5--;
 	}
 	else{
 		alert('There should be atleast one row');
 	}
+	document.getElementById("totalTimeTableRows").value = rowCount5-1;
+	
 }
 
 function addCouseExamRows(){ 
 	var table = document.getElementById('Couse_Exam_Table');
-	var rowCount = table.rows.length;
+	var rowCount6 = table.rows.length;
 	var cellCount = table.rows[0].cells.length; 
-	var row = table.insertRow(rowCount);
+	var row = table.insertRow(rowCount6);
 	for(var i =0; i <= cellCount; i++){
 		var cell = 'cell000'+i;
 		cell = row.insertCell(i);
@@ -95,18 +110,22 @@ function addCouseExamRows(){
 		cell.innerHTML=copycel;	
 	
 	}
+	document.getElementById("totalExamTableRows").value = rowCount6;
+	
 }
 
 function deleteCouseExamRows(){
 	var table = document.getElementById('Couse_Exam_Table');
-	var rowCount = table.rows.length;
-	if(rowCount > '2'){
-		var row = table.deleteRow(rowCount-1);
-		rowCount--;
+	var rowCount7 = table.rows.length;
+	if(rowCount7 > '2'){
+		var row = table.deleteRow(rowCount7-1);
+		rowCount7--;
 	}
 	else{
 		alert('There should be atleast one row');
 	}
+	document.getElementById("totalExamTableRows").value = rowCount7-1;
+	
 }
 
 

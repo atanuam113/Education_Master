@@ -71,7 +71,7 @@
                 <!-- Alert section end-->
                 <div class="box-inn-sp">
                     <div class="inn-title">
-                        <h4>Course Details</h4>
+                        <h4>All Course</h4>
                         
                     </div>
                     <div class="tab-inn">
@@ -91,7 +91,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for item in context %}
+                                    {% for item in allcourse_obj %}
                                     <tr>
                                         <td><span class="list-img"><img src="{{item.CourseBanner.url}}" alt=""></span>
                                         </td>

@@ -247,6 +247,67 @@
                 <!-- searched student end -->
 
 
+                <!-- searched librarian start -->
+                {% elif searched_librarian %}
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>All Librarian</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <!-- <th>Country</th> -->
+                                        <th>Id</th>
+                                        <th>Date of birth</th>
+                                        <th>Status</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in searched_librarian %}
+                                    <tr>
+                                        <td><span class="list-img"><img src="{{item.Librarian_Profile_Pic.url}}"
+                                                    alt=""></span>
+                                        </td>
+                                        <td><a href="{% url 'admin_librarian_details' item.pk %}"><span
+                                                    class="list-enq-name">{{item.Librarian_Name}}</span></a>
+                                        </td>
+                                        <td>{{item.Librarian_Phone}}</td>
+                                        <td>{{item.Librarian_Email}}</td>
+                                        <!-- <td>united states</td> -->
+                                        <td>{{item.Librarian_ID}}</td>
+                                        <td>{{item.Librarian_DOB}}</td>
+                                        {% if item.Librarian_Status == "Active" %}
+                                        <td>
+                                            <span class="label label-success">{{item.Librarian_Status}}</span>
+                                        </td>
+                                        {% elif item.Librarian_Status == "Hold" %}
+                                        <td>
+                                            <span class="label label-warning">{{item.Librarian_Status}}</span>
+                                        </td>
+
+                                        {% else %}
+                                        <td>
+                                            <span class="label label-danger">{{item.Librarian_Status}}</span>
+                                        </td>
+                                        {% endif %}
+                                        <td><a href="{% url 'admin_librarian_details' item.pk %}"
+                                                class="ad-st-view">View</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>            
+                <!-- searched librarian end -->
+
                 <!-- searched event start -->
                 {% elif searched_event %}
                 <div class="box-inn-sp">

@@ -59,3 +59,13 @@
     background-color: #ff7236;
     border-color: #ff7236;
   }
+
+  .profileImg {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #512DA8;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+  }

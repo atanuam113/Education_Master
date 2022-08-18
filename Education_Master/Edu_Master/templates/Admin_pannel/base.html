@@ -42,37 +42,39 @@
                 <form class="app-search" action="{% url 'admin_search' %}" method="post">
                     {% csrf_token %}
                     <input type="text" placeholder="Search..." class="form-control" name="search_keyword">                   
-                    <a href="#"><button type="submit" style="background-color: #022c5d; border: none; padding: 0%;"><i class="fa fa-search"></i></button></a>
-                    <!-- <button type="submit" style="background-color: #022c5d;"><i class="fa fa-search"></i></button> -->
-                    
-                
-            </div>
-            <!-- <div class="col-md-2 mob-hide">
-                <select name="search_type" class="app-search">
-                    <option value="" disabled selected>Search type</option>
-                    <option value="STUDENT">STUDENT</option>
-                    <option value="COURSE">COURSE</option>
-                    <option value="EVENT">EVENT</option>
-                </select>
-            </div> -->
-        </form>
+                    <a href="#"><button type="submit" style="background-color: #022c5d; border: none; padding: 0%;"><i class="fa fa-search"></i></button></a>                                                        
+                </form>
+            </div>            
             <!--== NOTIFICATION ==-->
             <div class="col-md-2 tab-hide">
                 <div class="top-not-cen">
                     <a class='waves-effect btn-noti' href="#" title="all enquiry messages"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>5</span></a>
                     <a class='waves-effect btn-noti' href="#" title="course booking messages"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>5</span></a>
-                    <a class='waves-effect btn-noti' href="#" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>5</span></a>
-                    
-                    <a class='waves-effect btn-noti' href="{% url 'admin_notification' %}"><i class="material-icons" style="font-size:18px">&#xe7f4;</i><span>5</span></a>
+                    {% if TotalContactCount %}
+                    <a class='waves-effect btn-noti' href="{% url 'admin_all_contact' %}" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>{{TotalContactCount}}</span></a>
+                    {% else %}
+                    <a class='waves-effect btn-noti' href="{% url 'admin_all_contact' %}" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>0</span></a>
+                    {% endif %}
+
+                    {% if NoOfNewUserReg %}    
+                    <a class='waves-effect btn-noti' title="New user register" href="{% url 'admin_notification' %}"><i class="material-icons" style="font-size:18px">&#xe7f4;</i><span>{{NoOfNewUserReg}}</span></a>
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>
             <!--== MY ACCCOUNT ==-->
             <div class="col-md-2 col-sm-3 col-xs-6">
                 <!-- Dropdown Trigger -->
+                {% if userprofile.Admin_Profile_Pic %}
                 <a class='waves-effect dropdown-button top-user-pro' href='#' 
-                data-activates='top-menu'><img src="{% static 'Edu_Master/images/user/6.png' %}" alt="" />My Account <i style="font-size:13px" class="fa">&#xf107;</i>
+                data-activates='top-menu'><img id="admin_profile_pic" src="{{userprofile.Admin_Profile_Pic.url}}" alt="" />My Account <i style="font-size:13px" class="fa">&#xf107;</i>
                 </a>
-
+                {% else %}
+                <a class='waves-effect dropdown-button top-user-pro' href='#' 
+                data-activates='top-menu'><img class="profileImg" src="{{userprofile.Admin_Profile_Pic.url}}" alt="{{user.username|capfirst|slice:'0:1'}}" />My Account <i style="font-size:13px" class="fa">&#xf107;</i>
+                </a>
+                    <!-- <td class="profileImg">{{user.username|capfirst|slice:"0:1"}}</td> -->
+                {% endif %}
                 <!-- Dropdown Structure -->
                 <ul id='top-menu' class='dropdown-content top-menu-sty'>
                     <li><a href="{% url 'admin_account_setting' %}" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
@@ -103,9 +105,9 @@
                 <!--== LEFT MENU ==-->
                 <div class="sb2-13">
                     <ul class="collapsible" data-collapsible="accordion">
-                        <li><a href="{% url 'admin_dashboard1' %}" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                        <li><a href="{% url 'admin_dashboard1' %}" class="menu-active"><i class="fa fa-bar-chart" aria-hidden="true"></i> Home</a>
                         </li>						
-                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book" aria-hidden="true"></i> All Courses</a>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book" aria-hidden="true"></i>Courses</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>
                                     <li><a href="{% url 'admin_all_course' %}">All Course</a>
@@ -137,6 +139,29 @@
                                 </ul>
                             </div>
                         </li>
+
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i> Librarian</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_librarian' %}">All Librarian</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_librarian' %}">Add New Librarian</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user" aria-hidden="true"></i>Users</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_user' %}">All User</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_course' %}">Add New User</a>
+                                    </li>
+                                    <!-- <li><a href="{% url 'admin_dashboard1' %}">Trash Course</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </li>
                                             						
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
                             <div class="collapsible-body left-sub-menu">
@@ -156,7 +181,7 @@
 									<li><a href="{% url 'admin_admission_enquiry' %}">Admission Enquiry</a></li>
 									<li><a href="{% url 'admin_seminar_enquiry' %}">Seminar Enquiry</a></li>
 									<li><a href="{% url 'admin_event_enquiry' %}">Event Enquiry</a></li>
-									<li><a href="{% url 'admin_common_enquiry' %}">Common Enquiry</a></li>
+									<li><a href="{% url 'admin_all_contact' %}">Common Enquiry</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -170,6 +195,16 @@
                                 </ul>
                             </div>
                         </li> -->
+                        <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-bar-chart" aria-hidden="true"></i> Dashboard</a>
+                            <div class="collapsible-body left-sub-menu">
+                                <ul>
+                                    <li><a href="{% url 'admin_all_librarian' %}">All Librarian</a>
+                                    </li>
+                                    <li><a href="{% url 'admin_add_librarian' %}">Add New Librarian</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil" aria-hidden="true"></i> Exam time table</a>
                             <div class="collapsible-body left-sub-menu">
                                 <ul>

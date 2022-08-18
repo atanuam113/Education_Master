@@ -41,6 +41,7 @@
 </head>
 
 <body>
+  <div id="LoginPage">
     {% load static %}
     <!-- Alert section start-->
     <div class="d-flex justify-content-center">
@@ -100,38 +101,52 @@
                 {% csrf_token %}
                 <div>
                     <div class="input-field s12">
-                        <input type="text" name="fname" id="fname" class="validate">
+                        <input type="text" name="fname" id="fname" class="validate" required>
                         <label>First name</label>
                     </div>
                 </div>
                 <div>
                     <div class="input-field s12">
-                        <input type="text" class="validate" name="lname" id="lname">
+                        <input type="text" class="validate" name="lname" id="lname" required>
                         <label>Last name</label>
                     </div>
                 </div>
                 <div>
                     <div class="input-field s12">
-                        <input type="email" class="validate" name="email" id="email">
+                        <input type="email" class="validate" name="email" id="email" required>
                         <label>Email id</label>
                     </div>
                 </div>
                 <div>
                     <div class="input-field s12">
-                        <input type="text" class="validate" name="uname" id="uname">
+                        <input type="text" class="validate" name="uname" id="uname" required>
                         <label>User name</label>
                     </div>
                 </div>
 
                 <div>
                     <div class="input-field s12">
-                        <input type="text" class="validate" name="password" id="password">
+                        <input type="date" class="validate" name="user_DOB" id="user_DOB" required>
+                        <label>Date Of Birth</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="input-field s12">
+                        <input type="tel" class="validate" pattern="[0-9]{10}" name="user_phone" id="user_phone" maxlength="10" minlength="10" required>
+                        <label> phone Number</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="input-field s12">
+                        <input type="text" class="validate" name="password" id="password" required>
                         <label>Password</label>
                     </div>
                 </div>
                 <div>
                     <div class="input-field s12">
-                        <input type="password" class="validate" name="cpassword" id="cpassword">
+                        <input type="password" class="validate" name="cpassword" id="cpassword" required>
                         <label>Confirm password</label>
                     </div>
                 </div>
@@ -148,6 +163,7 @@
             </div>
         </div>
     </div>
+  </div>
 
 
     <!--Import jQuery before materialize.js-->

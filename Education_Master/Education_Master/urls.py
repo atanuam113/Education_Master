@@ -9,3 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Edu_Master.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+handler404 = 'Edu_Master.views.error_404_view'

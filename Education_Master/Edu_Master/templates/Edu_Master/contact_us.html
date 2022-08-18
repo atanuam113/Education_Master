@@ -120,21 +120,31 @@
                 <form id="contact_form" name="contact_form" action="{% url 'contact_us' %}" method="post">
                     {% csrf_token %}
                     <ul>
-                        <li class="col-md-6 col-sm-6 col-xs-12 contact-input-spac">
-                            <input type="text" id="contactus_name" value="" name="contactus_name" placeholder="Name"
-                                required>
+                        <!-- <li class="col-md-6 col-sm-6 col-xs-12 contact-input-spac">
+                            <input type="text" id="contactus_name" value="" name="contactus_name" placeholder="{{userprofile.Student_Name}}" disabled>
                         </li>
                         <li class="col-md-6 col-sm-6 col-xs-12 contact-input-spac">
-                            <input type="text" id="contactus_phone" value="" name="contactus_phone" placeholder="Phone"
-                                required>
+                            <input type="text" id="contactus_phone" value="" name="contactus_phone" placeholder="{{userprofile.Student_Phone}}" disabled>
                         </li>
                         <li class="col-md-12 col-sm-6 col-xs-12 contact-input-spac">
-                            <input type="email" id="contactus_email" value="" name="contactus_email" placeholder="Email"
-                                required>
-                        </li>
+                            <input type="email" id="contactus_email" value="" name="contactus_email" placeholder="{{userprofile.Student_Email}}" disabled>
+                        </li> -->
+                        <div class="form-group">                                                    
+                            <div class="col-md-12">
+                                <!-- <label for="no"></label> -->
+                                <input type="hidden" value="{{userprofile.Student_Name}}" name="Contact_Name">
+                                <input type="hidden" value="{{userprofile.Student_Email}}" name="Contact_Email">
+                                <input type="text" class="form-control" value="{{userprofile.Student_Name}}" name="Contact_Name" placeholder="{{userprofile.Student_Name}}" disabled>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="email" class="form-control" value="{{userprofile.Student_Email}}" name="Contact_Email" placeholder="{{userprofile.Student_Email}}" disabled>
+                            </div>
+                        </div>
                         <li class="col-md-12 col-sm-12 col-xs-12 contact-input-spac">
-                            <textarea id="contactus_message" name="contactus_message" required
-                                placeholder="message"></textarea>
+                            <textarea id="contactus_message" name="Contact_Message" required placeholder="message"></textarea>
                         </li>
                         <li class="col-md-6">
                             <input type="submit" value="SUBMIT">

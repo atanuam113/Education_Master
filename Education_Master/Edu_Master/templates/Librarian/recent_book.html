@@ -77,7 +77,7 @@
                     {% endif %}
                 </div>
                 <!-- Alert section end-->
-                
+
                 <!-- Recent Book start -->
                 <div class="box-inn-sp admin-form">
                     <div class="inn-title">
@@ -86,82 +86,86 @@
                     <div class="tab-inn">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                              <tr>
-                                <th>Book ID</th>
-                                <th>Book Cover</th>
-                                <th>Book Title</th>
-                                <th>Read</th>
-                                <th>Download</th>
-                              </tr>
+                                <tr>
+                                    <th>Book ID</th>
+                                    <th>Book Cover</th>
+                                    <th>Book Title</th>
+                                    <th>Read</th>
+                                    <th>Download</th>
+                                </tr>
                             </thead>
                             <tbody>
-          
-          
-                              {% if object_list %}
-                              {% for book in object_list %}
-          
-          
-                              <tr>
-                                <td>{{ book.Book_Id }}</td>
-                                <td>
-                                  {% if book.Book_Cover %}
-                                  <img src="{{ book.Book_Cover.url }}" alt="{{ book.Book_Title }}"
-                                    style="width:100px; height: 100px">
-                                  {% else %}
-                                  <span class="text-muted">No cover</span>
-                                  {% endif %}
-                                </td>
-          
-          
-                                <td>{{ book.Book_Title }}</td>
-          
-                                <td>
-                                  {% if book.Book_Pdf %}
-                                  <a href="{{ book.Book_Pdf.url }}" class="btn btn-outline-primary" target="_blank">
-                                    View PDF</a>
-                                  {% else %}
-                                  <span class="text-muted">No PDF</span>
-                                  {% endif %}
-                                </td>
-                                <td>
-                                  {% if book.Book_Cover %}
-                                  <a href="{{ book.Book_Pdf.url }}" download class="btn btn-outline-success">
-                                    Download PDF</a>
-                                  {% else %}
-                                  <span class="text-muted">No PDF</span>
-                                  {% endif %}
-                                </td>
-          
-                              </tr>
-          
-                              <!-- end for and if -->
-                              {% endfor %}
-                              {% endif %}
+
+
+                                {% if object_list %}
+                                {% for book in object_list %}
+
+
+                                <tr>
+                                    <td>{{ book.Book_Id }}</td>
+                                    <td>
+                                        {% if book.Book_Cover %}
+                                        <img src="{{ book.Book_Cover.url }}" alt="{{ book.Book_Title }}"
+                                            style="width:100px; height: 100px">
+                                        {% else %}
+                                        <span class="text-muted">No cover</span>
+                                        {% endif %}
+                                    </td>
+
+
+                                    <td>{{ book.Book_Title }}</td>
+
+                                    <td>
+                                        {% if book.Book_Pdf %}
+                                        <a href="{{ book.Book_Pdf.url }}" class="btn btn-outline-primary"
+                                            target="_blank">
+                                            View PDF</a>
+                                        {% else %}
+                                        <span class="text-muted">No PDF</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if book.Book_Cover %}
+                                        <a href="{{ book.Book_Pdf.url }}" download class="btn btn-outline-success">
+                                            Download PDF</a>
+                                        {% else %}
+                                        <span class="text-muted">No PDF</span>
+                                        {% endif %}
+                                    </td>
+
+                                </tr>
+
+                                <!-- end for and if -->
+                                {% endfor %}
+                                {% endif %}
                             </tbody>
-                          </table>          
-                          <!--Page numbering Section Start-->
-                          {% if is_paginated %}                            
-                          <div class="nav-links">                                            
-                              {% if page_obj.has_previous %}
-                              <a class="prev page-numbers" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-long-arrow-left"></i> Previous</a>
-                              {% else %}                                            
-                              <!-- <a class="prev page-numbers" style="pointer-events: none;"><i class="fa fa-long-arrow-left"></i> Previous</a> -->
-                              {% endif %}                                    
-                              {% for i in paginator.page_range %}
-                              {% if page_obj.number == i %}
-                              <a class="page-numbers current" href="{{ i }}">{{ i }}</a>
-                              {% else %}
-                              <a class="page-numbers" href="?page={{ i }}">{{ i }}</a>
-                              {% endif %}
-                              {% endfor %}
-                              {% if page_obj.has_next %}
-                              <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}">Next <i class="fa fa-long-arrow-right"></i></a>                                                                          
-                              {% else %}
-                                  <!-- <li class="disabled"><span>&raquo;</span></li> -->
-                              {% endif %}
-                          </div>                            
-                      {% endif %}
-                      <!--Page numbering Section End--> 
+                        </table>
+                        <!--Page numbering Section Start-->
+                        {% if is_paginated %}
+                        <div class="nav-links">
+                            {% if page_obj.has_previous %}
+                            <a class="prev page-numbers" href="?page={{ page_obj.previous_page_number }}"><i
+                                    class="fa fa-long-arrow-left"></i>
+                                Previous</a>
+                            {% else %}
+                            <!-- <a class="prev page-numbers" style="pointer-events: none;"><i class="fa fa-long-arrow-left"></i> Previous</a> -->
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                            <a class="page-numbers current" href="{{ i }}">{{ i }}</a>
+                            {% else %}
+                            <a class="page-numbers" href="?page={{ i }}">{{ i }}</a>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <a class="next page-numbers" href="?page={{ page_obj.next_page_number }}">Next <i
+                                    class="fa fa-long-arrow-right"></i></a>
+                            {% else %}
+                            <!-- <li class="disabled"><span>&raquo;</span></li> -->
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        <!--Page numbering Section End-->
                     </div>
                 </div>
                 <!-- Recent Book end -->
@@ -169,4 +173,4 @@
         </div>
     </div>
 
-{% endblock %}
+    {% endblock %}

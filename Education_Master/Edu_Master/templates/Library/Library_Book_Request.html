@@ -1,0 +1,76 @@
+{% extends 'Library/base.html' %}
+{% load static %}
+<!-- Page Title -->
+{% block title%} Library books {% endblock %}
+{% block stylelink%}
+    <link href="{% static 'Library/css/photosize.css' %}" rel="stylesheet" type="text/css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="{% static 'Library/css/jquery.accordion.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+{% load static %}
+ <!-- Start: Page Banner -->
+ <section class="page-banner services-banner">
+    <div class="container">
+        <div class="banner-header">
+            <h2>Book Requests</h2>
+            <span class="underline center"></span>                    
+        </div>
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="index-2.html">Home</a></li>
+                <li>Book Requests</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- End: Page Banner -->
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="books-media-list">
+                <div class="container">
+                    <div class="row">
+                        <!-- Start: Search Section -->
+                        <section class="search-filters">
+                            <div class="container">
+                                <div class="filter-box">
+                                    <h3>What are you looking for at the library?</h3>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="keywords">Book Name</label>
+                                                <input class="form-control" placeholder="Book Name" id="Book_Name" name="Book_Name" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="keywords">Book Author</label>
+                                                <input class="form-control" placeholder="Book Author" id="Book_author" name="Book_author" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="keywords">ISBN</label>
+                                                <input class="form-control" placeholder="ISBN" id="Book_ISBN" name="Book_ISBN" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="submit" value="Request">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- End: Search Section -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}

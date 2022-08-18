@@ -1,6 +1,6 @@
 {% extends 'Edu_Master/base.html' %}
 {% load static %}
-{% block admin_link%}
+{% block Customlink %}
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
         <path
@@ -63,8 +63,8 @@
                     </div>
                     
                     <div>
-                        {% if event_obj %}
-                        {% for item in event_obj %}
+                        {% if post_list %}
+                        {% for item in post_list %}
                         <div class="ho-event pg-eve-main">
                             <ul>
                                 <li>
@@ -86,18 +86,54 @@
                         {% endfor %}
                         {% endif %}
                     </div>
+                    <!--Page numbering Section Start-->
+                    
+                    <!-- <div class="pg-pagina">
+                        <ul class="pagination">
+                            {% if post_list.has_other_pages %}
 
+                            {% if post_list.has_previous %}
+                            <li class="waves-effect"><a href="?page={{ post_list.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                            {% endif %}
+
+                            {% for i in post_list.paginator.page_range %}
+                                {% if post_list.number == i %}
+                                    <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+                                    {% else %}
+                                    <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}  
+
+                            {% if post_list.has_next %}
+                            <li class="waves-effect"><a href="?page={{ post_list.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                            {% endif %}
+                        </ul>
+                    </div> -->
+                    
+                    <!--Page numbering Section End-->
                     <div class="pg-pagina">
                         <ul class="pagination">
-                            <li class="disabled"><a href="#!"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                            <li class="active"><a href="#!">1</a></li>
-                            <li class="waves-effect"><a href="#!">2</a></li>
-                            <li class="waves-effect"><a href="#!">3</a></li>
-                            <li class="waves-effect"><a href="#!">4</a></li>
-                            <li class="waves-effect"><a href="#!">5</a></li>
-                            <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            {% if post_list.has_other_pages %}
+                            {% if post_list.has_previous %}
+                            <li><a href="?page={{ post_list.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                            {% else %}
+                            <li class="waves-effect disabled"><i class="fa fa-angle-left" aria-hidden="true"></i></li>
+                            {% endif %}
+                            {% for i in post_list.paginator.page_range %}
+                            {% if post_list.number == i %}
+                            <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% else %}
+                            <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}                    
+                            {% if post_list.has_next %}
+                            <li class="waves-effect"><a href="?page={{ post_list.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                            <li class="waves-effect disabled"><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                            {% endif %}
+                            {% endif %}
                         </ul>
-
                     </div>
                 </div>
             </div>

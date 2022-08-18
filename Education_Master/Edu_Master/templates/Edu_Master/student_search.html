@@ -1,0 +1,165 @@
+{% extends 'Edu_Master/base.html' %}
+{% load static %}
+{% block admin_link%}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+{% endblock %}
+<!-- Page Title -->
+{% block title%} Searched Item {% endblock %}
+{% block body %}
+{% load static %}
+
+<!-- Search course start -->
+{% if searched_course %}
+<!--SECTION ALL COURSE START-->
+<section class="pop-cour">
+    <div class="container com-sp pad-bot-70">
+        <div class="row">
+            <div class="con-title">
+                <h2>Searched <span>Courses</span></h2>
+                <p></p>
+            </div>
+        </div>        
+        <div class="row">
+            {% for item in searched_course %}
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <div>
+                    <!--POPULAR COURSES-->
+                    <div class="home-top-cour">
+                        <!--POPULAR COURSES IMAGE-->
+                        <div class="col-md-3"> <img style="height: 140px; width: 130px;" src="{{item.CourseBanner.url}}" alt=""> </div>
+                        <!--POPULAR COURSES: CONTENT-->
+                        <div class="col-md-9 home-top-cour-desc">
+                            <a href="{% url 'course_details' %}">
+                                <h3>{{item.Course_Name}}</h3>
+                            </a>
+                            <h4>{{item.Course_Skill}}</h4>
+                            <p>{{item.Course_Desc|slice:"0:95"}}....</p><br>
+                            <p><b>{{item.Course_Instructor}}</b></p> 
+                            <span class="home-top-cour-rat">{{item.Course_Rating}}</span>
+                            <div class="hom-list-share">
+                                <ul>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-eye" aria-hidden="true"></i> Book Now</a> </li>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>{{item.Course_level}}</a></li>
+                                    <li><a href="{% url 'course_details' %}"><i class="fa fa-clock-o" aria-hidden="true"></i>Total: 570</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>            
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+<!-- SECTION END -->
+
+<!-- Search course end -->
+
+<!-- Search event start -->
+{% elif searched_event %}
+<!--SECTION EVENT START-->
+<section>
+    <div class="container com-sp">
+        <!-- Alert section start-->
+        <div class="d-flex justify-content-center">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                {% if message.tags == "error"%}
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg> <strong>warning!</strong>{{ message }}
+
+                    <button type="button" class="close" id="btnalert" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="15" height="15" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg> <strong>Success!</strong>{{ message }}
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" id="btnalert">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <!-- Alert section end-->
+        <div class="row">
+            <div class="cor about-sp">
+                <div class="ed-about-tit">
+                    <div class="con-title">
+                        <h2>College <span> Events</span></h2>
+                    </div>
+
+                    <div>                        
+                        {% for item in searched_event %}
+                        <div class="ho-event pg-eve-main">
+                            <ul>
+                                <li>
+                                    <div class="ho-ev-date pg-eve-date"><span>{{item.Event_Date |date:'d'}}</span><span>{{item.Event_Date | date:'M,Y'}}</span>
+                                    </div>
+                                    <div class="ho-ev-link pg-eve-desc">
+                                        <a href="{% url 'event_register' item.pk %}">
+                                            <h4>{{item.Event_Name}}</h4>
+                                        </a>
+                                        <p>{{item.Event_Topic}}</p>
+                                        <span>{{item.Event_Time}} – {{item.Event_End_Time}}</span>
+                                    </div>
+                                    <div class="pg-eve-reg">
+                                        <a href="{% url 'event_register' item.pk %}">Register</a><a
+                                            href="{% url 'event_details' item.pk %}">Read more</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}                        
+                    </div>
+
+                    <div class="pg-pagina">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#!"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!">4</a></li>
+                            <li class="waves-effect"><a href="#!">5</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--SECTION EVENT END-->
+<!-- Search event end -->
+
+{% else %}
+    <h1>Nothing</h1>
+{% endif %}
+
+{% endblock %}

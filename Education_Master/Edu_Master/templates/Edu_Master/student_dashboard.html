@@ -7,6 +7,7 @@
 
 <!--SECTION START-->
 <section>
+
     <div class="pro-cover">
     </div>
     <div class="pro-menu">
@@ -42,8 +43,38 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="udb">
+                <!-- Alert section start-->
+                <div class="d-flex justify-content-center">
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        {% if message.tags == "error"%}
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg> <strong>warning!</strong>{{ message }}
 
+                            <button type="button" class="close" id="btnalert" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="15" height="15" role="img" aria-label="Success:">
+                                <use xlink:href="#check-circle-fill" />
+                            </svg> <strong>Success!</strong>{{ message }}
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true" id="btnalert">&times;</span>
+                            </button>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- Alert section end-->
+                <div class="udb">                    
                     <div class="udb-sec udb-prof">
                         <h4><img src="{% static 'Edu_Master/images/icon/db1.png' %}" alt="" /> My Profile</h4>
                         <p>{{item.Student_Bio}}</p>
