@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 from statistics import mode
 from xml.parsers.expat import model
 from django.db import models
@@ -7,6 +8,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from pandas import options
 
 
 class User(AbstractUser):
@@ -22,6 +24,14 @@ class User(AbstractUser):
     user_phone = models.CharField(max_length=100,default="None")
     class Meta:
         swappable = 'AUTH_USER_MODEL'
+
+class login_Log(models.Model):
+    LLog_PK = models.AutoField(primary_key=True)
+    LLog_User_PK = models.ForeignKey(User,on_delete=models.CASCADE)
+    LLog_Last_Login_Time  = models.DateTimeField()
+    LLog_LogOut_Time = models.DateTimeField(null= True,blank = True)
+    LLog_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+
 
 class Student_Profile(models.Model):
     Student_PK = models.AutoField(primary_key=True)
@@ -46,6 +56,30 @@ class Student_Profile(models.Model):
 
     def __str__(self):
         return self.Student_Name
+
+class Student_Profile_Log(models.Model):
+    SPLog_PK = models.AutoField(primary_key=True)
+    SPLOG_Student_PK = models.ForeignKey(Student_Profile,on_delete=models.CASCADE)
+    SPLOG_Name = models.CharField(max_length=200,default="")
+    SPLOG_Email = models.CharField(max_length=200,default="")
+    SPLOG_Phone = models.CharField(max_length=200,default="None")
+    SPLOG_DOB = models.DateField()
+    SPLOG_Address = models.CharField(max_length=500,default="None")
+    SPLOG_Type = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    SPLOG_Status = models.CharField(max_length=20,choices=SPLOG_Type,default="")
+    SPLOG_Bio = models.CharField(max_length=1000,default="None")
+    SPLOG_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Student',null= True,blank = True)
+    SPLOG_Github = models.CharField(max_length=200,default="None")
+    SPLOG_Linkedin = models.CharField(max_length=200,default="None")
+    SPLOG_Twitter = models.CharField(max_length=200,default="None")
+    SPLog_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    SPLOG_Updated_Date = models.DateTimeField(null= True,blank = True)
+    SPLOG_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+    
 
 class Student_Library_Profile(models.Model):
     Library_PK = models.AutoField(primary_key=True)
@@ -87,6 +121,31 @@ class Teacher_Profile(models.Model):
     def __str__(self):
         return self.Teacher_Name
 
+class Teacher_Profile_Log(models.Model):
+    TPLog_PK = models.AutoField(primary_key=True)
+    TPLog_Teacher_PK = models.ForeignKey(Teacher_Profile,on_delete=models.CASCADE)
+    TPLog_Name = models.CharField(max_length=200,default="")
+    TPLog_Email = models.CharField(max_length=200,default="")
+    TPLog_Phone = models.CharField(max_length=200,default="None")
+    TPLog_DOB = models.DateField()
+    TPLog_Address = models.CharField(max_length=500,default="None")
+    TPLog_Type = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    TPLog_Dept = models.CharField(max_length=500,default="None")
+    TPLog_Status = models.CharField(max_length=20,choices=TPLog_Type,default="")
+    TPLog_Bio = models.CharField(max_length=1000,default="None")
+    TPLog_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Teacher',null= True,blank = True)
+    TPLog_Github = models.CharField(max_length=200,default="None")
+    TPLog_Linkedin = models.CharField(max_length=200,default="None")
+    TPLog_Twitter = models.CharField(max_length=200,default="None")
+    TPLog_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    TPLog_Updated_Date = models.DateTimeField(null= True,blank = True)
+    TPLog_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+
+
 class Admin_Profile(models.Model):
     Admin_PK = models.AutoField(primary_key=True)
     Admin_ID = models.CharField(max_length=100,default="")
@@ -110,6 +169,32 @@ class Admin_Profile(models.Model):
 
     def __str__(self):
         return self.Admin_Name
+
+
+class Admin_Profile_Log(models.Model):
+    APLog_PK = models.AutoField(primary_key=True)
+    APLog_Admin_PK = models.ForeignKey(Admin_Profile,on_delete=models.CASCADE)
+    APLog_Name = models.CharField(max_length=200,default="")
+    APLog_Email = models.CharField(max_length=200,default="")
+    APLog_Phone = models.CharField(max_length=200,default="None")
+    APLog_DOB = models.DateField()
+    APLog_Address = models.CharField(max_length=500,default="None")
+    APLog_Type = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    APLog_Dept = models.CharField(max_length=500,default="None")
+    APLog_Status = models.CharField(max_length=20,choices=APLog_Type,default="")
+    APLog_Bio = models.CharField(max_length=1000,default="None")
+    APLog_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Admin',null= True,blank = True)
+    APLog_Github = models.CharField(max_length=200,default="None")
+    APLog_Linkedin = models.CharField(max_length=200,default="None")
+    APLog_Twitter = models.CharField(max_length=200,default="None")
+    APLog_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    APLog_Updated_Date = models.DateTimeField(null= True,blank = True)
+    APLog_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+
 
 class Librarian_Profile(models.Model):
     Librarian_PK = models.AutoField(primary_key=True)
@@ -135,6 +220,30 @@ class Librarian_Profile(models.Model):
     def __str__(self):
         return self.Librarian_Name
 
+class Librarian_Profile_Log(models.Model):
+    LPLog_PK = models.AutoField(primary_key=True)
+    LPLog_Librarian_PK = models.ForeignKey(Librarian_Profile,on_delete=models.CASCADE)
+    LPLog_Name = models.CharField(max_length=200,default="")
+    LPLog_Email = models.CharField(max_length=200,default="")
+    LPLog_Phone = models.CharField(max_length=200,default="None")
+    LPLog_DOB = models.DateField()
+    LPLog_Address = models.CharField(max_length=500,default="None")
+    LPLog_Type = (
+        ('Active','Active'),
+        ('Inactive','Inactive'),
+        ('Hold','Hold'),
+    )
+    LPLog_Dept = models.CharField(max_length=500,default="None")
+    LPLog_Status = models.CharField(max_length=20,choices=LPLog_Type,default="")
+    LPLog_Bio = models.CharField(max_length=1000,default="None")
+    LPLog_Profile_Pic = models.ImageField(upload_to = 'Edu_Master\Librarian',null= True,blank = True)
+    LPLog_Github = models.CharField(max_length=200,default="None")
+    LPLog_Linkedin = models.CharField(max_length=200,default="None")
+    LPLog_Twitter = models.CharField(max_length=200,default="None")
+    LPLog_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    LPLog_Updated_Date = models.DateTimeField(null= True,blank = True)
+    LPLog_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+
 class Events(models.Model):
     Event_ID = models.AutoField(primary_key=True)
     Event_Name = models.CharField(max_length=200,default="")
@@ -150,6 +259,14 @@ class Events(models.Model):
         ('Auto Mobile','Auto Mobile')
     )
     Event_Dept = models.CharField(max_length=50,choices=Dept_Choice,default="")
+    Event_Level_choice = (
+        ('Student','Student'),
+        ('Teacher','Teacher'),
+        ('Librarian','Librarian'),
+        ('Admin','Admin'),
+        ('General','General')
+    )
+    Event_Level = models.CharField(max_length=50,choices=Event_Level_choice,default="General")
     # Event_Dept_ID = models.CharField(max_length=50,default="")
     Event_Link = models.CharField(max_length=100,default="")
     Event_Banner = models.ImageField(upload_to = 'Edu_Master\Events',null = True,blank = True)
@@ -263,18 +380,20 @@ class Course_Syllabus(models.Model):
     Module_Week = models.CharField(max_length=50,default="")
     Module_Topic = models.CharField(max_length=200,default="")
     Module_Description = models.CharField(max_length=1000,default="")
-
-    def __str__(self):
-        return self.Course_Name
+    Module_Last_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    Module_Last_Update_Date = models.DateTimeField(null= True,blank = True)
+    Module_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+    
 
 class Course_Module(models.Model):
     Course_Module_ID = models.AutoField(primary_key=True)
     Course_Name = models.ForeignKey(Course_Detail,on_delete=models.CASCADE)
     Module_Topic = models.CharField(max_length=200,default="")
     module_Content = models.FileField(upload_to='Edu_Master\Course_Module',)
+    Module_Last_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    Module_Last_Update_Date = models.DateTimeField(null= True,blank = True)
+    Module_Effective_End_Date = models.DateTimeField(null= True,blank = True)
 
-    def __str__(self):
-        return self.Course_Name
 
 class Course_Time_Table(models.Model):
     Course_Time_Table_ID = models.AutoField(primary_key = True)
@@ -294,9 +413,10 @@ class Course_Time_Table(models.Model):
     Class_End_Time = models.TimeField()
     Class_Topic = models.CharField(max_length=200,default="")
     Class_Link = models.CharField(max_length=200,default="")
+    Class_Last_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    Class_Last_Update_Time = models.DateTimeField(null= True,blank = True)
+    Class_Effective_End_Date = models.DateTimeField(null= True,blank = True)
 
-    def __str__(self):
-        return self.Course_Name
 
 class Course_Exam_Table(models.Model):
     Exam_ID = models.AutoField(primary_key = True)
@@ -306,19 +426,33 @@ class Course_Exam_Table(models.Model):
     Exam_Start_Time = models.TimeField()
     Exam_End_Time = models.TimeField()
     Exam_Link = models.CharField(max_length=300,default="")
+    Exam_Last_Updated_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    Exam_Last_Update_Time = models.DateTimeField(null= True,blank = True)
+    Exam_Effective_End_Date = models.DateTimeField(null= True,blank = True)
 
-    def __str__(self):
-        return self.Course_Name
 
 
 class Address_Book(models.Model):
     AB_ID = models.AutoField(primary_key=True)
-    AB_Party_Id = models.CharField(max_length=50,default="None")
+    AB_Party_Id = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True,related_name='User_Address_Book')
+    AB_party_choice = (
+        ('Student','Student'),
+        ('Teacher','Teacher'),
+        ('Admin','Admin'),
+        ('Librarian','Librarian')
+    )
+    AB_Party_Type = models.CharField(max_length=50,choices=AB_party_choice,default='None')
+    AB_Party_Name = models.CharField(max_length=100,default="None")
+    AB_Party_Email = models.CharField(max_length=250,default="None")
     AB_Party_Address = models.CharField(max_length=500,default="None")
     AB_Party_City = models.CharField(max_length=200,default="None")
     AB_Party_State = models.CharField(max_length=200,default="None")
     AB_Party_Country = models.CharField(max_length=200,default="None")
-    AB_Party_Zip = models.CharField(max_length=200,default="None")
+    AB_Party_Zip = models.CharField(max_length=20,default="None")
+    AB_Party_phone = models.CharField(max_length=20,default="None")
+    AB_Last_Updated_By = models.ForeignKey(Admin_Profile,on_delete=models.CASCADE,null= True,blank = True)
+    AB_Last_Update_Date = models.DateTimeField(null= True,blank = True)
+    AB_Effective_End_Date = models.DateTimeField(null= True,blank = True)
 
 
 class Contact_us(models.Model):
@@ -343,3 +477,36 @@ class Contact_us(models.Model):
 
     def __str__(self):
         return self.Contact_Name
+
+class Email_Detail(models.Model):
+    Email_Id = models.AutoField(primary_key=True)
+    Email_Sender = models.CharField(max_length=200,default="None")
+    Email_Receiver = models.CharField(max_length=200,default="None")
+    Email_CC = models.CharField(max_length=300,default="None")
+    Email_BCC = models.CharField(max_length=300,default="None")
+    Email_Attachment = models.FileField(upload_to='Edu_Master\Email',null=True,blank=True)
+    Email_Receiver_Name = models.CharField(max_length=200,default="None")
+    Email_subject = models.CharField(max_length=150,default="None")
+    Email_Message = models.TextField(default="")
+    Email_Delivery_Option = (
+        ('Delivered','Delivered'),
+        ('Hold','Hold'),
+        ('Not Delivered','Not Delivered')
+    )
+    Email_Delivery_Status = models.CharField(max_length = 100,choices = Email_Delivery_Option,default = "None")
+    Email_Submission_Option = (
+        ('Welcome Email','Welcome Email'),
+        ('Account Activation','Account Activation'),
+        ('Login Credential','Login Credential'),
+        ('Manual Email','Manual Email'),
+        ('General Email','General Email'),
+        ('Profile Change','Profile Change')        
+
+    )
+    Email_Submission_Type = models.CharField(max_length = 50,choices = Email_Submission_Option,default = "None")
+    Email_Created_By = models.ForeignKey(User,on_delete=models.CASCADE,null= True,blank = True)
+    Email_DateTime = models.DateTimeField(null= True,blank = True)
+    Email_Last_Updated_By = models.ForeignKey(Admin_Profile,on_delete=models.CASCADE,null= True,blank = True)
+    Email_Last_Update_Date = models.DateTimeField(null= True,blank = True)
+    Email_Effective_End_Date = models.DateTimeField(null= True,blank = True)
+

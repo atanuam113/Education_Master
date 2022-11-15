@@ -9,6 +9,7 @@
 <!--== BODY INNER CONTAINER ==-->
 <div class="sb2-2">
     <!--== breadcrumbs ==-->
+    <!-- <button name="Communication" class="page-back" id="Communication" style="float: right;">Communication</button> -->
     <div class="sb2-2-2">
         <ul>
             <li><a href="{% url 'admin_dashboard1' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
@@ -17,6 +18,7 @@
             </li>
             <li class="page-back"><a href="javascript:history.go(-1)"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
             </li>
+            
         </ul>
     </div>
 
@@ -26,8 +28,19 @@
             <div class="col-md-12">
             <div class="box-inn-sp admin-form">
                     <div class="inn-title">
-                        <h4>Teacher Informations</h4>                        
+                        <h4>Teacher Informations <a href="#" data-activates='top-menu1' class="page-back dropdown-button" style="float: right;"><button>Communication</button></a></h4>                                              
                     </div>
+                    <input type="hidden" value="teacher" id="email_indi">
+                    <ul id='top-menu1' class='dropdown-content top-menu-sty'>
+                        {% if objectid %}
+                        <li><a href="{% url 'user_email_send' objectid %}" class="waves-effect" onclick="chagemailsender();"><i class='fa fa-paper-plane'></i>Email</a>
+                        </li>
+                        {% endif %}
+                        <li class="divider"></li>
+                        <li><a href="{% url 'admin_account_setting' %}" class="waves-effect"><i class='fa fa-phone'></i>Phone</a>
+                        </li>
+                       
+                    </ul>
                     <div class="tab-inn">
                         <form method="post" action=""  enctype="multipart/form-data">
                             {% csrf_token %}

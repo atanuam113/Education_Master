@@ -53,7 +53,7 @@
                     {% if TotalContactCount %}
                     <a class='waves-effect btn-noti' href="{% url 'admin_all_contact' %}" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>{{TotalContactCount}}</span></a>
                     {% else %}
-                    <a class='waves-effect btn-noti' href="{% url 'admin_all_contact' %}" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i><span>0</span></a>
+                    <a class='waves-effect btn-noti' href="{% url 'admin_all_contact' %}" title="admission enquiry"><i class="fa fa-tag" aria-hidden="true"></i></a>
                     {% endif %}
 
                     {% if NoOfNewUserReg %}    
@@ -80,7 +80,9 @@
                     <li><a href="{% url 'admin_account_setting' %}" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Account Setting</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    <li><a href="{% url 'Admin_Login_History' %}" class="ho-dr-con-last waves-effect"><i class="fa fa-history" aria-hidden="true"></i> Login History</a>
+                    </li>
+                    <li><a href="{% url 'LogOut' %}" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                     </li>
                 </ul>
             </div>

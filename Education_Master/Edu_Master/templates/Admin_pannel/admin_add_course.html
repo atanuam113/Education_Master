@@ -92,7 +92,7 @@
                             </li>
                         </ul>
 
-                        <form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+                        <form method="post" action="" enctype="multipart/form-data" id="Add_course_form">{% csrf_token %}
                             <div class="tab-content">
                                 <div id="home" class="tab-pane fade active in">
                                     <div class="box-inn-sp">
@@ -109,9 +109,9 @@
                                                 <div class="input-field col s6">
                                                     <select name="Course_Trainer">
                                                         <option value="" disabled selected>Select Teacher</option>
-                                                        <option value="1">Atanu Mondal</option>
-                                                        <option value="2">Gopal Mondal</option>
-                                                        <option value="3">Akash chandra</option>
+                                                       
+                                                        <option value="TECH2">Gopal Mondal</option>
+                                                        <option value="TECH3">Akash chandra</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="menu1" class="tab-pane fade">
+                                <div id="menu1" class="tab-pane fade menu1Input">
                                     <div class="inn-title">
                                         <h4>Couse Syllabus</h4>
 
@@ -185,13 +185,13 @@
                                                     <tbody>
                                                         <tr>
                                                             <td id="col0"><input type="text" value=""
-                                                                    class="couseModuleText"></td>
+                                                                    class="couseModuleText courseModuleInput "></td>
                                                             <td id="col1"><input type="text" value=""
-                                                                    class="couseModuleText"></td>
+                                                                    class="couseModuleText courseModuleInput "></td>
                                                             <td id="col2"><input type="text" value=""
-                                                                    class="couseModuleText"></td>
+                                                                    class="couseModuleText courseModuleInput "></td>
                                                             <td id="col3"><input type="text" value=""
-                                                                    class="couseModuleText"></td>
+                                                                    class="couseModuleText courseModuleInput "></td>
                                                         </tr>
 
                                                     </tbody>
@@ -209,7 +209,7 @@
                                     </div>
                                     <input type="hidden" id="totalSyllabusRows" name="totalSyllabusRows">
                                 </div>
-                                <div id="menu2" class="tab-pane fade">
+                                <div id="menu2" class="tab-pane fade menu2Input">
                                     <div class="inn-title">
                                         <h4>Couse Module Content</h4>                                        
                                     </div>
@@ -227,11 +227,9 @@
                                                     <tbody>
                                                         <tr>
                                                             <td id="col00"><input type="text" value=""
-                                                                    class="couseModuleText"></td>
+                                                                    class="couseModuleText IndModuleInput"></td>
                                                             <td id="col01"><input type="file" value=""
-                                                                    class="couseModuleText"></td>
-                                                            <!-- <td id="col2"><input type="date" value=""
-                                                                    class="couseModuleText"></td>                                                             -->
+                                                                    class="couseModuleText IndModuleInput"></td>
                                                         </tr>
 
                                                     </tbody>
@@ -249,7 +247,7 @@
                                     </div>
                                     <input type="hidden" id="totalModuleRows" name="totalModuleRows">
                                 </div>
-                                <div id="menu3" class="tab-pane fade">
+                                <div id="menu3" class="tab-pane fade manu3Input">
                                     <div class="inn-title">
                                         <h4>Time table</h4>                                        
                                     </div>
@@ -269,12 +267,12 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td id="col000"><input type="text" value="" class="couseModuleText"></td>
-                                                            <td id="col001"><input type="date" value="" class="couseModuleText"></td>
-                                                            <td id="col002"><input type="text" value="" class="couseModuleText"></td>                                                            
-                                                            <td id="col003"><input type="text" value="" class="couseModuleText"></td>                                                            
-                                                            <td id="col004"><input type="text" value="" class="couseModuleText"></td>                                                            
-                                                            <td id="col005"><input type="text" value="" class="couseModuleText"></td>                                                            
+                                                            <td id="col000"><input type="text" value="" class="couseModuleText courseSyllabusInput"></td>
+                                                            <td id="col001"><input type="date" value="" class="couseModuleText courseSyllabusInput"></td>
+                                                            <td id="col002"><input type="time" value="" class="couseModuleText courseSyllabusInput"></td>                                                            
+                                                            <td id="col003"><input type="time" value="" class="couseModuleText courseSyllabusInput"></td>                                                            
+                                                            <td id="col004"><input type="text" value="" class="couseModuleText courseSyllabusInput"></td>                                                            
+                                                            <td id="col005"><input type="text" value="" class="couseModuleText courseSyllabusInput"></td>                                                            
                                                         </tr>
 
                                                     </tbody>
@@ -292,7 +290,7 @@
                                     </div>
                                     <input type="hidden" id="totalTimeTableRows" name="totalTimeTableRows">
                                 </div>
-                                <div id="menu4" class="tab-pane fade">
+                                <div id="menu4" class="tab-pane fade menu4Input">
                                     <div class="inn-title">
                                         <h4>Exam Table</h4>                                        
                                     </div>
@@ -306,16 +304,16 @@
                                                             <th>Date</th>
                                                             <th>Stat Time</th>                                                            
                                                             <th>End Time</th>                                                                                                                                                                               
-                                                            <th>Class Link</th>                                                            
+                                                            <th>Exam Link</th>                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td id="col0000"><input type="text" value="" class="couseModuleText"></td>
-                                                            <td id="col0001"><input type="date" value="" class="couseModuleText"></td>
-                                                            <td id="col0002"><input type="text" value="" class="couseModuleText"></td>                                                            
-                                                            <td id="col0003"><input type="text" value="" class="couseModuleText"></td>                                                            
-                                                            <td id="col0004"><input type="text" value="" class="couseModuleText"></td>                
+                                                            <td id="col0000"><input type="text" value="" class="couseModuleText courseExamInput"></td>
+                                                            <td id="col0001"><input type="date" value="" class="couseModuleText courseExamInput"></td>
+                                                            <td id="col0002"><input type="time" value="" class="couseModuleText courseExamInput"></td>                                                            
+                                                            <td id="col0003"><input type="time" value="" class="couseModuleText courseExamInput"></td>                                                            
+                                                            <td id="col0004"><input type="text" value="" class="couseModuleText courseExamInput"></td>                
                                                         </tr>
 
                                                     </tbody>

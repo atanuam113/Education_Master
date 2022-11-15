@@ -19,5 +19,11 @@ admin.site.register(Student_Library_Profile)
 admin.site.register(Librarian_Profile)
 admin.site.register(Book_Request)
 admin.site.register(Address_Book)
+admin.site.register(Student_Profile_Log)
+admin.site.register(Teacher_Profile_Log)
+admin.site.register(Librarian_Profile_Log)
+admin.site.register(Admin_Profile_Log)
+admin.site.register(login_Log)
+admin.site.register(Email_Detail)
 
 

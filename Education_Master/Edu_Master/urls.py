@@ -9,6 +9,10 @@ path('register/',views.register,name='register'),
 path('',views.login,name='login'),
 path('forgotpass/',views.forgotpass,name='forgotpass'),
 path('LogOut/',views.LogOut,name='LogOut'),
+path('Admin_Login_History/',views.Admin_Login_History,name='Admin_Login_History'),
+path('Library_Login_History/',views.Library_Login_History,name='Library_Login_History'),
+path('Teacher_Login_History/',views.Teacher_Login_History,name='Teacher_Login_History'),
+path('Librarian_Login_History/',views.Librarian_Login_History,name='Librarian_Login_History'),
 path('loginpage/',views.login,name='loginpage'),
 path('LoginWithOTP/',views.LoginWithOTP,name='LoginWithOTP'),
 path("activate/<uidb64>/<token>/",views.activate,name="activate"),
@@ -88,6 +92,7 @@ path('admin_user_details/<int:pk>',views.admin_user_details,name='admin_user_det
 path('admin_all_contact/',views.admin_all_contact,name='admin_all_contact'),
 # path('admin_add_librarian/',views.admin_add_librarian,name='admin_add_librarian'),
 path('admin_contact_response/<int:pk>',views.admin_contact_response,name='admin_contact_response'),
+path('admin_contact_view/<int:pk>',views.admin_contact_view,name='admin_contact_view'),
 
 path('admin_all_events/',views.admin_all_events,name='admin_all_events'),
 path('admin_add_event/',views.admin_add_event,name='admin_add_event'),
@@ -106,6 +111,7 @@ path('admin_seminar_enquiry/',views.admin_seminar_enquiry,name='admin_seminar_en
 path('admin_event_enquiry/',views.admin_event_enquiry,name='admin_event_enquiry'),
 path('admin_common_enquiry/',views.admin_common_enquiry,name='admin_common_enquiry'),
 path('admin_view_enquiry/',views.admin_view_enquiry,name='admin_view_enquiry'),
+path('user_email_send/<int:pk>',views.user_email_send,name='user_email_send'),
 
 # Teacher Section
 path('teacher_dashboard/',views.teacher_dashboard,name='teacher_dashboard'),

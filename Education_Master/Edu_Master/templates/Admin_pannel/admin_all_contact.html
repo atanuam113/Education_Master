@@ -116,8 +116,8 @@
                                         </td>
                                         {% endif %}
                                         {% if item.Contact_Status == "Solved" %}
-                                        <td><a href="#"
-                                                class="ad-st-view" onclick="return false;" disabled = "disabled">View</a></td>
+                                        <td><a href="{% url 'admin_contact_view' item.pk %}"
+                                                class="ad-st-view">View</a></td>
                                         {% else %}
                                         <td><a href="{% url 'admin_contact_response' item.pk %}"
                                             class="ad-st-view">Reply</a></td>

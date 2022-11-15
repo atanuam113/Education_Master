@@ -26,8 +26,18 @@
                 
             <div class="box-inn-sp admin-form">
                     <div class="inn-title">
-                        <h4>Librarian Informations</h4>                        
+                        <h4>Librarian Informations<a href="#" data-activates='top-menu1' class="page-back dropdown-button" style="float: right;"><button>Communication</button></a></h4>                        
                     </div>
+                    <ul id='top-menu1' class='dropdown-content top-menu-sty'>
+                        {% if objectid %}
+                        <li><a href="{% url 'user_email_send' objectid %}" class="waves-effect" onclick="chagemailsender();"><i class='fa fa-paper-plane'></i>Email</a>
+                        </li>
+                        {% endif %}
+                        <li class="divider"></li>
+                        <li><a href="{% url 'admin_account_setting' %}" class="waves-effect"><i class='fa fa-phone'></i>Phone</a>
+                        </li>
+                       
+                    </ul>
                     <div class="tab-inn">
                         <form method="post" action=""  enctype="multipart/form-data">
                             {% csrf_token %}

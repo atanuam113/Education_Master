@@ -5,7 +5,6 @@ function addCouseSyllabusRows(){
 	var row = table.insertRow(rowCount);
 	for(var i =0; i < cellCount; i++){
 		var cell = 'cell'+i;
-		alert(cell);
 		cell = row.insertCell(i);
 		var copycel = document.getElementById('col'+i).innerHTML;
 		cell.innerHTML=copycel;
@@ -128,4 +127,50 @@ function deleteCouseExamRows(){
 	
 }
 
+$('#Add_course_form').submit(function () {
+	$('.menu1Input').each(function(){
+		var menu_entry = "";
+
+		$(this).find('.courseModuleInput').each(function(){
+			menu_entry = menu_entry + this.value + ","
+		})
+		$('#Add_course_form').append('<input type="hidden" name="menu_entries" value="'+ menu_entry +'" />')
+
+	})
+
+	$('.menu2Input').each(function(){
+		var menu_entry1 = "";
+		var file,files,fileLength,fileList;
+		$(this).find('.IndModuleInput').each(function(){
+			files  = this.files;
+			fileList = $('.files');
+			fileLength = files.length;
+			read=new FileReader();
+        	read.readAsBinaryString( file );
+			
+			menu_entry1 = menu_entry1 + this.value + ","
+			alert("menu_entry1:"+menu_entry1);
+		})
+		$('#Add_course_form').append('<input type="hidden" name="menu_module" value="'+ menu_entry1 +'" />')
+
+	})
+	$('.manu3Input').each(function(){
+		var menu_entry2 = "";
+
+		$(this).find('.courseSyllabusInput').each(function(){
+			menu_entry2 = menu_entry2 + this.value + ","
+		})
+		$('#Add_course_form').append('<input type="hidden" name="menu_syllabus" value="'+ menu_entry2 +'" />')
+
+	})
+	$('.menu4Input').each(function(){
+		var menu_entry4 = "";
+
+		$(this).find('.courseExamInput').each(function(){
+			menu_entry4 = menu_entry4 + this.value + ","
+		})
+		$('#Add_course_form').append('<input type="hidden" name="menu_exam" value="'+ menu_entry4 +'" />')
+
+	})
+})
 
